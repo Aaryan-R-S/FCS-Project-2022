@@ -1,0 +1,105 @@
+[Links]
+- Sample backend repo - [https://github.com/Aaryan-R-S/Social-Chatbot-Project-Backend]
+- DOS attack [set numberfProxies]
+- CSRF Check [https://stackoverflow.com/questions/27067251/where-to-store-jwt-in-browser-how-to-protect-against-csrf]
+- Captcha
+- Blockchain [https://blog.logrocket.com/build-cryptocurrency-node-js-blockchain/]
+
+[Admin]
+- username
+- passwd (hashed at frontend with salt)
+- with captcha (https://blog.logrocket.com/implement-recaptcha-react-application/)
+
+-> APIs for add, delete, login, verify users, remove the suspicious users
+-> Functionalities for only login and sees unverified (pending) users and either verifies them or reject them by seeing their documents uploaded
+-> Also sees suspicious documents and can remove any of users involved
+
+
+[Patient]
+- health_id
+- passwd (hashed at frontend with salt)
+- name
+- dob
+- address
+- email
+- phone_no
+- document_id
+- verified(success/failure/pending/banned)
+- wallet
+
+
+[Expert] (Type - Professionals/Hospitals/Organization/Pharmacy/InsuranceFirm)
+- license_no
+- public key
+- type
+- name
+- dob/dor
+- location
+- description
+- images (atleast two to atmost five) (sz limit: 500Kb)
+- email
+- phone_no
+- document_id
+- verified(success/failure/pending/banned)
+- wallet
+
+
+[Medicine]
+- name
+- sellerid (pharmacy_id)
+- price
+- quantity
+
+
+[Orders]
+- order_id
+- patient_id
+- seller_id
+- array of med_id
+- array of quantity
+- total_price
+- status (requested/billed/paid)
+- date
+
+-> Make order request to seller and generate bill document (via seller priv key) and share it with patient and receives payment
+
+
+[Claims]
+- document_id
+- firm_id (insurance firm)
+- date
+- status (pending/rejected/approved)
+
+-> Firm sees doc and may report suspicious
+
+
+[Log]
+- details
+- date
+
+
+[Documents] (Type - health license, health id, prescriptions, discharge summaries, test results, bills)
+- text (string)
+- type
+- sharedWith (health_id + array of Experts: license_no)
+- date
+- suspicious (yes/no)
+
+-> Document stored using gridfs
+- .png .jpeg .txt .doc and .pdf file only
+- max size limit: 1Mb
+- max files limit per user: 10 files
+- unique name using crypto.js
+- Metadata added after creation of document: 
+    - set author (license_no)
+    - set bill amount (if not a bill then set it to 0)
+    - set digital_signature (PrivSigner(SHAHash+|+PubKeySigner+|+HealthId+|+Date+|+BillAmt))
+
+-> uploaded by
+    - Patient: verify doc and can be reported suspicious
+    - Expert (Professionals/Hospitals/Organization/Pharmacy): gen, share and save doc 
+
+[OTPs] (payment/signing)
+- issued to
+- pin
+- date

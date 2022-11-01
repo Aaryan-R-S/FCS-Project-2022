@@ -36,6 +36,6 @@ Payment system (wallet)
 - assign initial money to each user and in the way of operations manage the money exchange
 
 Others requirements
-- OTP to validate highly sensitive transactions (like payment with PIN then OTP, signing documents with PrKey then OTP)
-- highly sensitive transactions with virtual keyboard 
+- OTP to validate highly sensitive transactions (OTP at time of payment, OTP at time of signing documents with PrivKey)
+- highly sensitive transactions with virtual keyboard (log in passwd + entering PrivKey)
 - transaction loggings
