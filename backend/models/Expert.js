@@ -13,6 +13,7 @@ const ExpertSchema = new Schema({
     }, 
     publickey:{
         type: String,
+        unique: true,
         required: true,
     }, 
     name:{
@@ -27,14 +28,18 @@ const ExpertSchema = new Schema({
         type: String,
         required: true
     }, 
-    description:{
-        type: String,
-        required: true
-    }, 
     images:{
         type: Array,
         items: { type: String },
     },
+    documentid:{
+        type: String,
+        required: true
+    },
+    description:{
+        type: String,
+        required: true
+    }, 
     email:{
         type: String,
         required: true
@@ -43,10 +48,6 @@ const ExpertSchema = new Schema({
         type: String,
         required: true
     }, 
-    documentid:{
-        type: String,
-        required: true
-    },
     verificationstatus:{
         type: String,
         enum : ['success','failure','pending','banned'],

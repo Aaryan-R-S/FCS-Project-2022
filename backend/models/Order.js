@@ -2,19 +2,17 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const OrderSchema = new Schema({
-    patientid:{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'patient',
+    healthid:{
+        type: String,
         required: true
     }, 
-    sellerid:{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'expert',
+    licenseno:{
+        type: String,
         required: true
     }, 
     medicinesid:{
         type: Array,
-        items: { type: mongoose.Schema.Types.ObjectId, ref: 'medicine' },
+        items: { type: String },
         required: true
     },
     medicinesquantity:{
@@ -26,15 +24,15 @@ const OrderSchema = new Schema({
         type: Number,
         required: true
     }, 
+    documentid:{
+        type: String,
+        required: true
+    },
     orderdate:{
         type: Date,
         default: Date.now,
         required: true
     }, 
-    documentid:{
-        type: String,
-        required: true
-    },
     status:{
         type: String,
         enum : ['requested','billed','paid'],

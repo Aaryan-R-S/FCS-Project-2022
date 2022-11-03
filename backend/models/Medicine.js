@@ -7,9 +7,8 @@ const MedicineSchema = new Schema({
         required: true,
         unique: true
     }, 
-    sellerid:{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'expert',
+    licenseno:{
+        type: String,
         required: true
     }, 
     price:{

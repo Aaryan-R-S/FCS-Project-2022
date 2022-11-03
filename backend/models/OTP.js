@@ -2,13 +2,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const OtpSchema = new Schema({
-    validforp:{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'patient',
+    healthid:{
+        type: String
     },
-    validfore:{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'expert',
+    licenseno:{
+        type: String
     },
     pin:{
         type: Number,

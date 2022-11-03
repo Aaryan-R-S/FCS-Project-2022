@@ -1,5 +1,6 @@
 [Links]
 - Sample backend repo - [https://github.com/Aaryan-R-S/Social-Chatbot-Project-Backend]
+- File serve and handling [https://afteracademy.com/blog/file-upload-with-multer-in-nodejs-and-express | https://www.section.io/engineering-education/uploading-files-using-multer-nodejs/]
 - DOS attack [set numberfProxies]
 - CSRF Check [https://stackoverflow.com/questions/27067251/where-to-store-jwt-in-browser-how-to-protect-against-csrf]
 - Captcha

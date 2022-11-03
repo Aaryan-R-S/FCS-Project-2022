@@ -2,15 +2,18 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const ClaimSchema = new Schema({
+    healthid:{
+        type: String, 
+        required: true
+    }, 
+    licenseno:{
+        type: String,
+        required: true,
+    }, 
     documentid:{
         type: String,
         required: true
     },
-    insurancefirmid:{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'expert',
-        required: true,
-    }, 
     claimdate:{
         type: Date,
         default: Date.now,

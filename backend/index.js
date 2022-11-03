@@ -1,5 +1,5 @@
 const express = require("express");
-const limitter = require('express-rate-limit')
+const limitter = require('express-rate-limit');
 const cookieParser = require("cookie-parser");
 const connectToMongo = require('./db');
 const cors = require('cors');
@@ -22,6 +22,8 @@ app.use(limitter({
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+app.set("view engine", "ejs");
+app.use('/document', express.static(`${__dirname}/public`));
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
@@ -36,5 +38,5 @@ app.use('/admin', require('./routes/admin'));
 app.use('/patient', require('./routes/patient'));
 
 app.listen(port, () => {
-	  console.log(`Example app listening at http://localhost:${port}`);
+	console.log(`Example app listening at http://localhost:${port}`);
 });

@@ -23,6 +23,10 @@ const PatientSchema = new Schema({
         type: String,
         required: true
     }, 
+    documentid:{
+        type: String,
+        required: true
+    },
     email:{
         type: String,
         required: true
@@ -31,10 +35,6 @@ const PatientSchema = new Schema({
         type: String,
         required: true
     }, 
-    documentid:{
-        type: String,
-        required: true
-    },
     verificationstatus:{
         type: String,
         enum : ['success','failure','pending','banned'],

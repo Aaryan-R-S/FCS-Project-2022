@@ -58,7 +58,7 @@ router.post('/addAdmin', [
         res.status(200).json({verdict, messages:["Success! New admin added."]});
     }
     catch(error){
-        console.error(error.message);
+        // console.error(error.message);
         res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
     }
 })
@@ -101,7 +101,7 @@ router.post('/login', [
           }).status(200).json({verdict, messages:["Success! You have logged in successfully."]});
     }
     catch(error){
-        console.error(error.message);
+        // console.error(error.message);
         res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
     }
 })
@@ -128,7 +128,7 @@ router.post('/adminDetails', [
         res.status(200).json({verdict, messages:["Success! Admin details fetched."], "data":user});
     }
     catch(error){
-        console.error(error.message);
+        // console.error(error.message);
         res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
     }
 })
@@ -155,7 +155,7 @@ router.post('/deleteAdmin', [
         res.status(200).json({verdict, messages:["Success! Admin removed successfully."]});
     }
     catch(error){        
-        console.error(error.message);
+        // console.error(error.message);
         res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
     }
 })
@@ -173,7 +173,7 @@ router.post('/logout', checkAuth, async (req, res)=>{
         return res.clearCookie("access_token").status(200).json({verdict, messages:["Success! You have logged out successfully."]});
     }
     catch(error){
-        console.error(error.message);
+        // console.error(error.message);
         res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
     }
 })
