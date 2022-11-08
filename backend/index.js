@@ -36,6 +36,7 @@ app.get('/ip', (req, res) => {
 
 app.use('/admin', require('./routes/admin'));
 app.use('/patient', require('./routes/patient'));
+app.use('/expert', require('./routes/expert'));
 
 app.listen(port, () => {
 	console.log(`Example app listening at http://localhost:${port}`);

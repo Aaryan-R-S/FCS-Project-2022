@@ -24,6 +24,10 @@ const OrderSchema = new Schema({
         type: Number,
         required: true
     }, 
+    prescriptionid:{
+        type: String,
+        required: true
+    },
     documentid:{
         type: String,
         required: true
@@ -35,7 +39,7 @@ const OrderSchema = new Schema({
     }, 
     status:{
         type: String,
-        enum : ['requested','billed','paid'],
+        enum : ['requested','cancelled','billed','paid'],
         required: true
     }
 });

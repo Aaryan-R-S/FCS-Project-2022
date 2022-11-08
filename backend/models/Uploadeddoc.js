@@ -17,7 +17,7 @@ const UploadeddocSchema = new Schema({
     },
     doctype:{
         type: String,
-        enum : ['licenseno','healthid','prescription','dischargesummaries','testresults', 'bill'],
+        enum : ['licenseno','view','healthid','prescription','dischargesummaries','testresults', 'bill'],
         required: true
     },
     uploaddate:{

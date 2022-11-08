@@ -1,25 +1,28 @@
 const express = require('express');
 const router = express.Router();
-const Patient = require('../models/Patient');
+const Expert = require('../models/Expert');
 const Uploadeddoc = require('../models/Uploadeddoc');
 const Claim = require('../models/Claim');
+const Medicine = require('../models/Medicine');
 const Order = require('../models/Order');
 const OTP = require('../models/OTP');
 const checkAuth = require('../middlewares/authorize');
-const upload = require('../utils/uploadFile');
+const uploads = require('../utils/uploadFiles');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const fs = require('fs')
-const { promisify } = require('util')
-const unlinkAsync = promisify(fs.unlink)
+const fs = require('fs');
+const { promisify } = require('util');
+const unlinkAsync = promisify(fs.unlink);
+const {generateKeyPair} = require('crypto');
+
 require('dotenv').config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-// ROUTE 1: create a patient using: POST "/patient/addPatient"; No login required
-router.post('/addPatient', upload, [
-    body('healthid', 'Enter a valid healthid of length 10 with all numeric characters.').isLength({min:10, max:10}).isNumeric(),
+// ROUTE 1: create an expert using: POST "/expert/addExpert"; No login required
+router.post('/addExpert', uploads, [
+    body('licenseno', 'Enter a valid licenseno of length 10 with all numeric characters.').isLength({min:10, max:10}).isNumeric(),
     body('password', 'Enter a strong password of minimum length 8 with atleast one lowercase, one uppercase, one number and one symbol or special character.').isStrongPassword({
         minLength: 8,
         minLowercase: 1,
@@ -36,7 +39,8 @@ router.post('/addPatient', upload, [
       }),
       body('name','Enter a valid name of minimum length 3.').isLength({min:3}),
       body('dob','Enter a valid date of birth.').isISO8601('yyyy-mm-dd'),
-      body('address','Enter a valid address of minimum length 3.').isLength({min:3}),
+      body('location','Enter a valid location of minimum length 3.').isLength({min:3}),
+      body('description','Enter a valid description of minimum length 100.').isLength({min:100}),
       body('email','Enter a valid email address.').isEmail(),
       body('phoneno','Enter a valid phone number.').isMobilePhone(),
       body('doctype','Enter a valid document type.').isLength({min:3})
@@ -49,54 +53,95 @@ router.post('/addPatient', upload, [
         return res.status(400).json({ verdict, messages: errors.array() });
     }
     
-    if(req.file===undefined){
+    if(req.files===undefined){
         return res.status(400).json({ verdict, messages: ["Bad Request! Only .jpg/.jpeg/.png/pdf/.txt/.doc/.docx files are allowed with size less than a mb."] });
     }
 
     try{
         // Check with the user with this username exist already
-        let user = await Patient.findOne({healthid: req.body.healthid});
-        if (user){ return res.status(400).json({ verdict, messages: ["Bad Request! A person with this health ID is already registered."]});}
+        let user = await Expert.findOne({licenseno: req.body.licenseno});
+        if (user){ return res.status(400).json({ verdict, messages: ["Bad Request! An expert with this license no is already registered."]});}
 
         req.body.licensenos = [];
 
         await Uploadeddoc.create({
-            healthid: req.body.healthid,
+            healthid: req.body.licenseno,
             licensenos: req.body.licensenos,
-            documentid: req.file.path,
+            documentid: req.files[0].path,
             doctype: req.body.doctype,
             suspicious: "no"
         })
         
-        const salt = await bcrypt.genSalt(10);
-        const secPwd = await bcrypt.hash(req.body.password, salt);
-
-        // create a new user
-        user = await Patient.create({
-            healthid: req.body.healthid,
-            password: secPwd,
-            name: req.body.name,
-            dob: req.body.dob,
-            address: req.body.address,
-            documentid: req.file.path,
-            email: req.body.email,
-            phoneno: req.body.phoneno,
-            verificationstatus: "pending",
-            wallet: 1000
-        })
-        
-        const data = {
-            id: user.id
+        let imgPathArr = []
+        for (let idx = 1; idx < req.files.length; idx++) {
+            const pth = req.files[idx].path;
+            imgPathArr.push(pth);
+            await Uploadeddoc.create({
+                healthid: req.body.licenseno,
+                licensenos: req.body.licensenos,
+                documentid: pth,
+                doctype: 'view',
+                suspicious: "no"
+            })
         }
-        
-        const authToken = jwt.sign(data, JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
-        
-        verdict = true;
-        res.cookie("access_token", authToken, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "prod",
-            sameSite: 'strict'
-          }).status(200).json({verdict, messages:["Success! You have signed up successfully."]});
+
+        generateKeyPair('rsa', {
+            modulusLength: 4096,
+            publicKeyEncoding: {
+              type: 'spki',
+              format: 'pem'
+            },
+            privateKeyEncoding: {
+              type: 'pkcs8',
+              format: 'pem',
+              cipher: 'aes-256-cbc',
+              passphrase: process.env.RSA_SECRET
+            }
+          }, async (err, publicKey_, privateKey_) => {
+            publicKey_ = publicKey_.replace("-----BEGIN PUBLIC KEY-----", "")
+            .replace("-----END PUBLIC KEY-----", "")
+            .replaceAll("\n", "")
+            .trim();
+            privateKey_ = privateKey_.replace("-----BEGIN ENCRYPTED PRIVATE KEY-----", "")
+            .replace("-----END ENCRYPTED PRIVATE KEY-----", "")
+            .replaceAll("\n", "")
+            .trim();
+
+            // Handle errors and use the generated key pair.
+            const salt = await bcrypt.genSalt(10);
+            const secPwd = await bcrypt.hash(req.body.password, salt);
+    
+            // create a new user
+            user = await Expert.create({
+                licenseno: req.body.licenseno,
+                password: secPwd,
+                publickey: publicKey_,
+                name: req.body.name,
+                dob: req.body.dob,
+                location: req.body.location,
+                images: imgPathArr,
+                documentid: req.files[0].path,
+                description: req.body.description,
+                email: req.body.email,
+                phoneno: req.body.phoneno,
+                verificationstatus: "pending",
+                wallet: 1000
+            })
+            
+            const data = {
+                id: user.id
+            }
+            
+            const authToken = jwt.sign(data, JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
+            
+            verdict = true;
+            res.cookie("access_token", authToken, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "prod",
+                sameSite: 'strict'
+              }).status(200).json({verdict, messages:["Success! You have signed up successfully."], "privateKey": privateKey_});
+        });
+
     }
     catch(error){
         // console.error(error.message);
@@ -104,9 +149,9 @@ router.post('/addPatient', upload, [
     }
 })
 
-// ROUTE 2: authenticate a patient using: POST "/patient/login"; No login required
+// ROUTE 2: authenticate an expert using: POST "/expert/login"; No login required
 router.post('/login', [
-        body('healthid', 'Enter a valid healthid of minimum length 10 with all numeric characters.').isLength({min:10}).isNumeric(),
+        body('licenseno', 'Enter a valid licenseno of minimum length 10 with all numeric characters.').isLength({min:10}).isNumeric(),
         body('password', 'Enter your password having minimum length 8.').isLength({min:8})
     ], async (req, res)=>{
 
@@ -116,11 +161,11 @@ router.post('/login', [
         return res.status(400).json({ verdict, messages: errors.array() });
     }
 
-    const {healthid, password} = req.body;
+    const {licenseno, password} = req.body;
 
     try{
         // Check with the user with this email exist already
-        let user = await Patient.findOne({healthid});
+        let user = await Expert.findOne({licenseno});
         if (!user){ return res.status(400).json({verdict, messages: ["Authentication failed! Invalid username or password."]});}
         
         const passwordCompare = await bcrypt.compare(password, user.password);
@@ -147,8 +192,8 @@ router.post('/login', [
     }
 })
 
-// ROUTE 3: get logged in patient details: POST "/patient/patientDetails"; Login required
-router.post('/patientDetails', checkAuth, async (req, res)=>{
+// ROUTE 3: Get logged in expert details: POST "/expert/expertDetails"; Login required
+router.post('/expertDetails', checkAuth, async (req, res)=>{
     verdict = false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {        
@@ -156,7 +201,7 @@ router.post('/patientDetails', checkAuth, async (req, res)=>{
     }
     try{
         const userId = req.userId;
-        let user = await Patient.findById(userId).select("-password");
+        let user = await Expert.findById(userId).select("-password");
         if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
     
         verdict = true;
@@ -168,8 +213,8 @@ router.post('/patientDetails', checkAuth, async (req, res)=>{
     }
 })
 
-// ROUTE 4: delete a patient using: POST "/patient/deletePatient"; Login required
-router.post('/deletePatient', checkAuth, async (req, res)=>{
+// ROUTE 4: delete an expert using: POST "/expert/deleteExpert"; Login required
+router.post('/deleteExpert', checkAuth, async (req, res)=>{
     verdict = false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {        
@@ -177,34 +222,39 @@ router.post('/deletePatient', checkAuth, async (req, res)=>{
     }
     try{
         const userId = req.userId;
-        let user = await Patient.findById(userId);
+        let user = await Expert.findById(userId);
         if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
 
-        user = await Patient.findByIdAndDelete(user._id);
-        let healthid = user.healthid;
+        user = await Expert.findByIdAndDelete(user._id);
+        let licenseno = user.licenseno;
 
-        let allMatches = await Uploadeddoc.find({healthid});
+        let allMatches = await Uploadeddoc.find({healthid:licenseno});
         for (let i = 0; i < allMatches.length; i++) {
             const e = allMatches[i];
             await Uploadeddoc.findByIdAndDelete(e._id);
             await unlinkAsync(e.documentid);
         }
-        allMatches = await Claim.find({healthid});
+        allMatches = await Claim.find({licenseno});
         for (let i = 0; i < allMatches.length; i++) {
             const e = allMatches[i];
             await Claim.findByIdAndDelete(e._id);
             await unlinkAsync(e.documentid);
         }
-        allMatches = await Order.find({healthid});
+        allMatches = await Order.find({licenseno});
         for (let i = 0; i < allMatches.length; i++) {
             const e = allMatches[i];
             await Order.findByIdAndDelete(e._id);
             await unlinkAsync(e.documentid);
         }
-        allMatches = await OTP.find({healthid});
+        allMatches = await OTP.find({licenseno});
         for (let i = 0; i < allMatches.length; i++) {
             const e = allMatches[i];
             await OTP.findByIdAndDelete(e._id);
+        }
+        allMatches = await Medicine.find({licenseno});
+        for (let i = 0; i < allMatches.length; i++) {
+            const e = allMatches[i];
+            await Medicine.findByIdAndDelete(e._id);
         }
 
         verdict = true;
@@ -216,13 +266,13 @@ router.post('/deletePatient', checkAuth, async (req, res)=>{
     }
 })
 
-// ROUTE 5: logout patient: POST "/patient/logout"; Login required
+// ROUTE 5: Logout expert: POST "/expert/logout"; Login required
 router.post('/logout', checkAuth, async (req, res)=>{
     verdict = false;
 
     try{
         const userId = req.userId;
-        let user = await Patient.findById(userId);
+        let user = await Expert.findById(userId);
         if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
 
         verdict = true;
@@ -234,7 +284,7 @@ router.post('/logout', checkAuth, async (req, res)=>{
     }
 })
 
-// ROUTE 6: modify logged in patient details: POST "/patient/modifyDetails"; Login required
+// ROUTE 6: modify logged in expert details: POST "/expert/modifyDetails"; Login required
 router.post('/modifyDetails',[
     body('password', 'Enter a strong password of minimum length 8 with atleast one lowercase, one uppercase, one number and one symbol or special character.').isStrongPassword({
         minLength: 8,
@@ -252,7 +302,8 @@ router.post('/modifyDetails',[
       }),
       body('name','Enter a valid name of minimum length 3.').isLength({min:3}),
       body('dob','Enter a valid date of birth.').isISO8601('yyyy-mm-dd'),
-      body('address','Enter a valid address of minimum length 3.').isLength({min:3}),
+      body('location','Enter a valid location of minimum length 3.').isLength({min:3}),
+      body('description','Enter a valid description of minimum length 100.').isLength({min:100}),
       body('email','Enter a valid email address.').isEmail(),
       body('phoneno','Enter a valid phone number.').isMobilePhone(),
 ], checkAuth, async (req, res)=>{
@@ -263,18 +314,19 @@ router.post('/modifyDetails',[
     }
     try{
         const userId = req.userId;
-        let user = await Patient.findById(userId).select("-password");
+        let user = await Expert.findById(userId).select("-password");
         if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
     
         const salt = await bcrypt.genSalt(10);
         const secPwd = await bcrypt.hash(req.body.password, salt);
 
         // create a new user
-        user = await Patient.findByIdAndUpdate(userId, {
+        user = await Expert.findByIdAndUpdate(userId, {
             password: secPwd,
             name: req.body.name,
             dob: req.body.dob,
-            address: req.body.address,
+            location: req.body.location,
+            description: req.body.description,
             email: req.body.email,
             phoneno: req.body.phoneno
         })
