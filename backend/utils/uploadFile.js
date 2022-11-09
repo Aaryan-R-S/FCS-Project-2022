@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
     },
     // By default, multer removes file extensions so let's add them back
     filename: function(req, file, cb) {
-        let filename = req.body.healthid + randomFileName(32) + Date.now() ;      
+        let filename = (req.body.healthid ? req.body.healthid : req.body.licenseno) + randomFileName(32) + Date.now() ;      
         cb(null, filename + path.extname(file.originalname));
     }
 });

@@ -7,6 +7,7 @@ const Medicine = require('../models/Medicine');
 const Order = require('../models/Order');
 const OTP = require('../models/OTP');
 const checkAuth = require('../middlewares/authorize');
+const upload = require('../utils/uploadFile');
 const uploads = require('../utils/uploadFiles');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
@@ -346,6 +347,57 @@ router.post('/modifyDetails',[
     }
     catch(error){
         // console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 7: verify an expert again using: POST "/patient/verifyExpertAgain"; login required
+router.post('/verifyExpertAgain', upload, [
+    body('licenseno', 'Enter a valid licenseno of minimum length 10 with all numeric characters.').isLength({min:10}).isNumeric(),
+], checkAuth, async (req, res)=>{
+    let verdict = false;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    
+    if(req.file===undefined){
+        return res.status(400).json({ verdict, messages: ["Bad Request! Only .jpg/.jpeg/.png/pdf/.txt/.doc/.docx files are allowed with size less than a mb."] });
+    }
+
+    try{
+        // Check with the user with this username exist already
+        let user = await Expert.findById(req.userId);
+        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus!='failure' || user.licenseno!=req.body.licenseno){ return res.status(403).json({verdict, messages:["Bad request! Cannot apply for verification again."]});}
+
+        req.body.licensenos = [];
+
+        await Uploadeddoc.create({
+            healthid: req.body.licenseno,
+            licensenos: req.body.licensenos,
+            documentid: req.file.path,
+            doctype: 'licenseno',
+            suspicious: "no"
+        });
+
+        let doc = await Uploadeddoc.findOneAndDelete({
+            documentid: user.documentid
+        });
+        await unlinkAsync(doc.documentid);
+
+
+        user = await Expert.findByIdAndUpdate(user.id, {
+            documentid: req.file.path,
+            verificationstatus: "pending"
+        });
+        
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! You have applied for verification successfully."]});
+    }
+    catch(error){
+        console.error(error.message);
         res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
     }
 })
