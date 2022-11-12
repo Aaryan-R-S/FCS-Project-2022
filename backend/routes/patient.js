@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Patient = require('../models/Patient');
+const Expert = require('../models/Expert');
 const Uploadeddoc = require('../models/Uploadeddoc');
 const Claim = require('../models/Claim');
 const Order = require('../models/Order');
@@ -56,7 +57,10 @@ router.post('/addPatient', upload, [
     try{
         // Check with the user with this username exist already
         let user = await Patient.findOne({healthid: req.body.healthid});
-        if (user){ return res.status(400).json({ verdict, messages: ["Bad Request! A person with this health ID is already registered."]});}
+        if (user){ 
+            await unlinkAsync(req.file.path);
+            return res.status(400).json({ verdict, messages: ["Bad Request! A person with this health ID is already registered."]});
+        }
 
         req.body.licensenos = [];
 
@@ -261,10 +265,12 @@ router.post('/modifyDetails',[
     if (!errors.isEmpty()) {        
         return res.status(400).json({ verdict, messages: errors.array() });
     }
+    
     try{
         const userId = req.userId;
         let user = await Patient.findById(userId).select("-password");
         if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot edit profile, you are banned."]});}
     
         const salt = await bcrypt.genSalt(10);
         const secPwd = await bcrypt.hash(req.body.password, salt);
@@ -316,8 +322,14 @@ router.post('/verifyPatientAgain', upload, [
     try{
         // Check with the user with this username exist already
         let user = await Patient.findById(req.userId);
-        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
-        if(user.verificationstatus!='failure' || user.healthid!=req.body.healthid){ return res.status(403).json({verdict, messages:["Bad request! Cannot apply for verification again."]});}
+        if(!user){ 
+            await unlinkAsync(req.file.path);
+            return res.status(404).json({verdict, messages:["Not found! User not found."]});
+        }
+        if(user.verificationstatus!='failure' || user.healthid!=req.body.healthid){ 
+            await unlinkAsync(req.file.path);
+            return res.status(403).json({verdict, messages:["Bad request! Cannot apply for verification again."]});
+        }
 
         req.body.licensenos = [];
 
@@ -342,6 +354,202 @@ router.post('/verifyPatientAgain', upload, [
         
         verdict = true;
         res.status(200).json({verdict, messages:["Success! You have applied for verification successfully."]});
+    }
+    catch(error){
+        // console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 8: filter expert by (who, name, location): POST "/patient/filterExperts"; Login required
+router.post('/filterExperts', [
+    body('who','Enter a valid expert type.'),
+    body('name','Enter a valid expert name.'),
+    body('location','Enter a valid expert location.')
+], checkAuth, async (req, res)=>{
+    verdict = false;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {        
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    try{
+        const userId = req.userId;
+        let user = await Patient.findById(userId).select("-password");
+        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot list experts, you are not verified yet."]});}
+        if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot list experts, you are banned."]});}
+
+        let experts = await Expert.find({
+            $or: [
+                {who: req.body.who}, 
+                {name: req.body.name}, 
+                {location: req.body.location}
+            ]
+        }).select(["-password","-signatures","-documentid","-verificationstatus","-wallet"]);
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! Queried experts fetched."], experts});
+    }
+    catch(error){
+        console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 9: list user docs (except healthid): POST "/patient/listDocs"; Login required
+router.post('/listDocs', checkAuth, async (req, res)=>{
+    verdict = false;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {        
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    try{
+        const userId = req.userId;
+        let user = await Patient.findById(userId).select("-password");
+        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot list docs, you are not verified yet."]});}
+        if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot list docs, you are banned."]});}
+
+        let docs = await Uploadeddoc.find({
+            $and: [
+                {healthid: user.healthid}, 
+                {doctype: {$ne:"healthid"} }
+            ]
+        }).select(["-suspicious"]);
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! User documents fetched."], docs});
+    }
+    catch(error){
+        console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 10: delete patient's doc using: POST "/patient/deleteDoc"; Login required
+router.post('/deleteDoc', [
+    body('documentid', 'Enter a valid document id of minimum length 10.').isLength({min:10}),
+], checkAuth, async (req, res)=>{
+    let verdict = false;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    
+    try{
+        // Check with the user with this username exist already
+        let user = await Patient.findById(req.userId);
+        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot delete doc, you are not verified yet."]});}
+        if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot delete doc, you are banned."]});}
+
+        let doc = await Uploadeddoc.findOneAndDelete({
+            documentid: req.body.documentid
+        });
+        await unlinkAsync(doc.documentid);
+        
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! Document deleted successfully."]});
+    }
+    catch(error){
+        console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 11: upload a document using: POST "/patient/uploadDoc"; Login required
+router.post('/uploadDoc', upload, [
+    body('healthid', 'Enter a valid healthid of minimum length 10 with all numeric characters.').isLength({min:10}).isNumeric(),
+    body('doctype','Enter a valid document type.').isLength({min:3})
+], checkAuth, async (req, res)=>{
+    let verdict = false;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    
+    if(req.file===undefined){
+        return res.status(400).json({ verdict, messages: ["Bad Request! Only .jpg/.jpeg/.png/pdf/.txt/.doc/.docx files are allowed with size less than a mb."] });
+    }
+
+    try{
+        // Check with the user with this username exist already
+        let user = await Patient.findById(req.userId);
+        if(!user){ 
+            await unlinkAsync(req.file.path);
+            return res.status(404).json({verdict, messages:["Not found! User not found."]});
+        }
+        if(user.verificationstatus=='failure' || user.verificationstatus=='pending' || user.healthid!=req.body.healthid){ 
+            await unlinkAsync(req.file.path);
+            return res.status(403).json({verdict, messages:["Bad request! Cannot upload doc, you are not verified yet."]});
+        }
+        if(user.verificationstatus=='banned'){ 
+            await unlinkAsync(req.file.path);
+            return res.status(403).json({verdict, messages:["Bad request! Cannot upload doc, you are banned."]});
+        }
+
+        
+        req.body.licensenos = [];
+        
+        await Uploadeddoc.create({
+            healthid: req.body.healthid,
+            licensenos: req.body.licensenos,
+            documentid: req.file.path,
+            doctype: req.body.doctype,
+            suspicious: "no"
+        });
+
+        let docs = await Uploadeddoc.find({
+            $and: [
+                {healthid: user.healthid}, 
+                {doctype: {$ne:"healthid"} }
+            ]
+        }).select(["-suspicious"]);
+        
+        let limit_exceeded = (docs.length > 2 ? true : false);
+
+        if(limit_exceeded){
+            await Patient.findByIdAndUpdate(user.id, {verificationstatus: 'banned'});
+            return res.status(200).json({verdict, messages:["Failure! You have exceeded the upper limit of 2 file uploads, so you are banned now."]});
+        }
+
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! You have uploaded the doc successfully."], uploadsLeft:2-docs.length});
+    }
+    catch(error){
+        // console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 12: share patient's doc using: POST "/patient/shareDoc"; Login required
+router.post('/shareDoc', [
+    body('licenseno', 'Enter a valid licenseno of length 10 with all numeric characters.').isLength({min:10, max:10}).isNumeric(),
+    body('documentid', 'Enter a valid document id of minimum length 10.').isLength({min:10})
+], checkAuth, async (req, res)=>{
+    let verdict = false;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    
+    try{
+        // Check with the user with this username exist already
+        let user = await Patient.findById(req.userId);
+        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot share doc, you are not verified yet."]});}
+        if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot share doc, you are banned."]});}
+
+        let expert = Expert.find({licenseno: req.body.licenseno})
+        if(!expert){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+
+        let doc = await Uploadeddoc.findOneAndUpdate({
+            documentid: req.body.documentid
+        }, { $push: { licensenos: req.body.licenseno } });
+        
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! Document shared successfully."]});
     }
     catch(error){
         console.error(error.message);

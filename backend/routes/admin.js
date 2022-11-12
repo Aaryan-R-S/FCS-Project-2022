@@ -301,7 +301,7 @@ router.post('/verifyUserAgain', [
     }
 })
 
-// ROUTE 6: list suspicious uploaded docs using: POST "/admin/listSusDocs"; Login required
+// ROUTE 10: list suspicious uploaded docs using: POST "/admin/listSusDocs"; Login required
 router.post('/listSusDocs', checkAuth, async (req, res)=>{
     verdict = false;
     const errors = validationResult(req);

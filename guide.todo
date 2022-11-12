@@ -1,0 +1,58 @@
+Admin
+✔ approves the users @done (11/10/2022, 2:48:08 PM)
+✔ removes the users (suspicious) @done (11/10/2022, 2:48:14 PM)
+
+User
+✔ first upload a health licenses (wait for admin approval) @done (11/10/2022, 2:49:57 PM)
+✔ users must be able to view/edit their profile @done (11/10/2022, 2:50:08 PM)
+
+Patients
+✔ view/search/location filter (who, name and location) on details of professionals and hospitals after checkup @done (11/11/2022, 4:54:06 AM)
+✔ request his/her documents from professionals and hospitals after checkup @done (11/10/2022, 3:30:07 PM)
+☐ buy medicines (using prescriptions)
+☐ buy medical insurance from any insurance firm
+☐ clain medical reimbursement from any insurance firm
+✔ list documents @done (11/11/2022, 5:04:00 AM)
+✔ upload and share documents (check verification) @done (11/12/2022, 8:33:47 PM)
+✔ delete documents (yes can't be verified anymore) @done (11/11/2022, 5:27:47 AM)
+
+Professionals
+✔ release documents of patients (do NOT store them) and sign them which can be verified by any third party @done (11/11/2022, 3:21:05 AM)
+✔ sign doc if not verified @done (11/12/2022, 8:34:01 PM)
+✔ list shared docs @done (11/12/2022, 8:33:59 PM)
+✔ report a doc suspicious provided shared @done (11/12/2022, 8:34:03 PM)
+
+Hospitals
+✔ release documents of patients (do NOT store them) and sign them which can be verified by any third partysign doc if not verified @done (11/11/2022, 3:22:09 AM)
+✔ sign doc if not verified @done (11/12/2022, 8:34:05 PM)
+✔ list shared docs @done (11/12/2022, 8:34:08 PM)
+✔ report a doc suspicious provided shared @done (11/12/2022, 8:34:17 PM)
+
+Pharmacy
+☐ sell medicines and provide bills (if verified prescriptions)
+✔ sign doc if not verified @done (11/12/2022, 8:34:22 PM)
+✔ report a doc suspicious provided shared @done (11/12/2022, 8:34:22 PM)
+
+Insurance firm
+☐ takes initial money from patients and then make them eligible for medical claims
+☐ Give medical reimbursement after verification of documents uploaded
+✔ report a doc suspicious provided shared @done (11/12/2022, 8:34:24 PM)
+
+Documents
+✔ prescriptions, discharge summaries, test results, bills (by professionals and hospitals) @done (11/12/2022, 8:35:38 PM)
+✔ bills (by pharmacy) @done (11/12/2022, 8:35:40 PM)
+✔ verified automatically @done (11/12/2022, 8:39:14 PM)
+
+Payment system
+☐ assign initial money to each user and in the way of operations manage the money exchange
+
+Others requirements
+✔ File serve and handling [https://afteracademy.com/blog/file-upload-with-multer-in-nodejs-and-express | https://www.section.io/engineering-education/uploading-files-using-multer-nodejs/] @done (11/12/2022, 11:57:13 PM)
+✔ SHA256 hash [https://gist.github.com/GuillermoPena/9233069] @done (11/12/2022, 11:57:25 PM)
+☐ Payment transaction loggings
+☐ CSRF Check [https://github.com/pcktuts/csrf-demo-express-js | https://stackoverflow.com/questions/27067251/where-to-store-jwt-in-browser-how-to-protect-against-csrf]
+☐ OTP (at least two) to validate highly sensitive transactions (OTP at time of payment + OTP at time of signing documents)
+☐ Blockchain verification [https://blog.logrocket.com/build-cryptocurrency-node-js-blockchain/]
+☐ Highly sensitive transactions with virtual keyboard (For password at time of login - Frontend only)
+☐ DOS Check [set numberfProxies]
+☐ Captcha at time of account creation (OPTIONAL: Frontend + Backend) [https://levelup.gitconnected.com/how-to-implement-recaptcha-in-a-react-application-6098c506d750 | https://blog.logrocket.com/implement-recaptcha-react-application/]

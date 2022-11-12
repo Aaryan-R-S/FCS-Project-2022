@@ -11,11 +11,15 @@ const ExpertSchema = new Schema({
         type: String,
         required: true
     }, 
-    publickey:{
+    signatures:{
+        type: Array,
+        items: { type: String }
+    },
+    who:{
         type: String,
-        unique: true,
-        required: true,
-    }, 
+        enum : ['professional','hospital','pharmacy','insurancefirm'],
+        required: true
+    },
     name:{
         type: String,
         required: true
