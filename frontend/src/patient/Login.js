@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-
+import axios from "axios";
 
 export default function Login() {
 
@@ -9,24 +9,21 @@ export default function Login() {
         var dict = {};
         dict.healthid=document.getElementById("healthid").value
         dict.password=document.getElementById("pass").value
-        console.log(dict)
+        // console.log(dict)
 
-        // const formData = new FormData();
-        // formData.append("healthid", dict.healthid);
-        // formData.append("password", dict.pass);
-
-        const res=await fetch('http://localhost:3500/patient/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            withCredentials: true,
-            body: JSON.stringify(dict)
-        }).then((res) => res.json())
-
-        // const res = await fetch("http://localhost:3500/patient/login", {
-        //     method: "POST",
-        //     body: formData,
-        // }).then((res) => res.json());
-        // // alert(JSON.stringify(`${res.message}, status: ${res.status}`));
+        let a = axios.create({
+            baseURL: "http://localhost:3500/patient",
+        });
+        let res = await a.post(
+            "/login",
+            JSON.stringify({ healthid:dict.healthid, password:dict.password }),
+            {
+                withCredentials: true,
+                credentials: 'include',
+                headers: { "Content-Type": "application/json" },
+            }
+          );
+        res = res.data;
         // console.log(res)
         setresponse(res)
     }

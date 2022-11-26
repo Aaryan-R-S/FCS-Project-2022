@@ -10,7 +10,11 @@ connectToMongo();
 
 const app = express();
 const port = process.env.PORT || 3500; // Get environment variable PORT from process.yml configuration.
-const numberOfProxies = (process.env.NODE_ENV === "prod"? process.env.NUMBEROFPROXIES : 15);
+const numberOfProxies = (process.env.NODE_ENV === "prod"? process.env.NUMBEROFPROXIES : 1);
+const corsOptions = {
+	credentials: true,
+	origin: 'http://localhost:8080'
+}
 
 app.set('trust proxy', numberOfProxies)
 app.use(limitter({
@@ -20,7 +24,7 @@ app.use(limitter({
 	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 }))
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.set("view engine", "ejs");
