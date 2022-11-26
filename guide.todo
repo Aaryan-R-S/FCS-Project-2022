@@ -61,4 +61,4 @@ Others requirements
 
 Building Documentation
 ✔ Export APIs from postman @done (11/27/2022, 12:08:07 AM)
-✔ Run ./postman_doc_gen 'eCare APIs.postman_collection.json' -o doc @done (11/27/2022, 12:08:08 AM)
+✔ Run ./postman_doc_gen 'eCare APIs.postman_collection.json' -o docs @done (11/27/2022, 12:08:08 AM)
