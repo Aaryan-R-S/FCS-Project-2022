@@ -28,6 +28,7 @@ const storage = multer.diskStorage({
 
 const multerFilter = function(req, file, cb) {
     if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|pdf|PDF|txt|TXT|doc|DOC|docx|DOCX)$/)) {
+        console.log(req.file)
         req.fileValidationError = 'Only .jpg/.jpeg/.png/pdf/.txt/.doc/.docx files are allowed!';
         req.file = undefined;
         return cb(null, false);
