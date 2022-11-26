@@ -8,6 +8,9 @@ const checkAuth = require('../middlewares/authorize');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
+const { promisify } = require('util');
+const unlinkAsync = promisify(fs.unlink);
 require('dotenv').config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -205,8 +208,8 @@ router.post('/listPendingUsers', checkAuth, async (req, res)=>{
     }
 })
 
-// ROUTE 7: remove and ban a suspicious user using: POST "/admin/removeUser"; Login required
-router.post('/removeUser', [
+// ROUTE 7: remove and ban a suspicious user using: POST "/admin/banUser"; Login required
+router.post('/banUser', [
     body('id', 'Enter a valid healthid/licenseno of length 10 with all numeric characters.').isLength({min:10, max:10}).isNumeric(),
 ], checkAuth, async (req, res)=>{
     verdict = false;
@@ -217,7 +220,7 @@ router.post('/removeUser', [
     try{
         const userId = req.userId;
         let user = await Admin.findById(userId);
-        if(!user){ return res.status(401).json({verdict, messages:["Authorization failed! You are not authorized to remove a user."]});}
+        if(!user){ return res.status(401).json({verdict, messages:["Authorization failed! You are not authorized to ban a user."]});}
 
         let user1 = await Patient.findOne({healthid: req.body.id});
         let user2 = await Expert.findOne({licenseno: req.body.id});
@@ -229,7 +232,7 @@ router.post('/removeUser', [
             user2 = await Expert.findByIdAndUpdate(user2._id, {verificationstatus: 'banned'});
         }
         verdict = true;
-        res.status(200).json({verdict, messages:["Success! User removed and banned successfully."]});
+        res.status(200).json({verdict, messages:["Success! User banned successfully."]});
     }
     catch(error){        
         // console.error(error.message);
@@ -320,6 +323,51 @@ router.post('/listSusDocs', checkAuth, async (req, res)=>{
     }
     catch(error){        
         // console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 11: remove and ban a suspicious user using: POST "/admin/removeUser"; Login required
+router.post('/removeUser', [
+    body('id', 'Enter a valid healthid/licenseno of length 10 with all numeric characters.').isLength({min:10, max:10}).isNumeric(),
+], checkAuth, async (req, res)=>{
+    verdict = false;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {        
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    try{
+        const userId = req.userId;
+        let user = await Admin.findById(userId);
+        if(!user){ return res.status(401).json({verdict, messages:["Authorization failed! You are not authorized to remove a user."]});}
+
+        let user1 = await Patient.findOne({healthid: req.body.id});
+        let user2 = await Expert.findOne({licenseno: req.body.id});
+        if(!user1 && !user2){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user1){
+            user1 = await Patient.findByIdAndUpdate(user1._id, {verificationstatus: 'banned'});
+        }
+        else{
+            user2 = await Expert.findByIdAndUpdate(user2._id, {verificationstatus: 'banned'});
+        }
+
+        let doc = await Uploadeddoc.find({
+            healthid: req.body.id
+        });
+
+        for (let index = 0; index < doc.length; index++) {
+            const d = doc[index];
+            if(d.doctype=='licenseno' || d.doctype=='view'){
+                await Uploadeddoc.findByIdAndDelete(d.id);
+                await unlinkAsync(d.documentid);
+            }
+        }
+
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! User data removed and banned successfully."]});
+    }
+    catch(error){        
+        console.error(error.message);
         res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
     }
 })

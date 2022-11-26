@@ -2,6 +2,7 @@ const express = require("express");
 const limitter = require('express-rate-limit');
 const cookieParser = require("cookie-parser");
 const connectToMongo = require('./db');
+const mongoSanitize = require('express-mongo-sanitize');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -24,6 +25,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.set("view engine", "ejs");
 app.use('/document', express.static(`${__dirname}/public`));
+app.use(mongoSanitize({
+    replaceWith: '_',
+  }),
+);
 
 app.get('/', (req, res) => res.send('Hello World!'));
 

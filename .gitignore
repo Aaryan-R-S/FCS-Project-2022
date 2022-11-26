@@ -14,6 +14,7 @@ public
 # /build
 
 # misc
+postman_doc_gen.exe
 .DS_Store
 .env.local
 .env.development.local
