@@ -17,6 +17,10 @@ const fs = require('fs');
 const { promisify } = require('util');
 const unlinkAsync = promisify(fs.unlink);
 const Patient = require('../models/Patient');
+const Insurance = require('../models/Insurance');
+const Log = require('../models/Log');
+const { sendMail } = require('../utils/sendMail');
+const { pattern } = require('../utils/regex');
 
 require('dotenv').config();
 
@@ -39,14 +43,14 @@ router.post('/addExpert', uploads, [
         pointsForContainingNumber: 10,
         pointsForContainingSymbol: 10,
       }),
-      body('who','Enter a valid expert type.').isLength({min:3}),
-      body('name','Enter a valid name of minimum length 3.').isLength({min:3}),
+      body('who','Enter a valid expert type.').matches(pattern).isLength({min:3}),
+      body('name','Enter a valid name of minimum length 3.').matches(pattern).isLength({min:3}),
       body('dob','Enter a valid date of birth.').isISO8601('yyyy-mm-dd'),
-      body('location','Enter a valid location of minimum length 3.').isLength({min:3}),
-      body('description','Enter a valid description of minimum length 100.').isLength({min:100}),
+      body('location','Enter a valid location of minimum length 3.').matches(pattern).isLength({min:3}),
+    body('description','Enter a valid description of minimum length 100.').matches(pattern).isLength({min:100}),
       body('email','Enter a valid email address.').isEmail(),
       body('phoneno','Enter a valid phone number.').isMobilePhone(),
-      body('doctype','Enter a valid document type.').isLength({min:3})
+      body('doctype','Enter a valid document type.').matches(pattern).isLength({min:3})
 ], async (req, res)=>{
 
     let verdict = false;
@@ -397,7 +401,8 @@ router.post('/verifyExpertAgain', upload, [
 router.post('/releaseDoc', upload, [
     body('healthid', 'Enter a valid healthid of length 10 with all numeric characters.').isLength({min:10, max:10}).isNumeric(),
     body('licenseno', 'Enter a valid licenseno of minimum length 10 with all numeric characters.').isLength({min:10}).isNumeric(),
-    body('doctype','Enter a valid document type.').isLength({min:3})
+    body('doctype','Enter a valid document type.').matches(pattern).isLength({min:3}),
+    body('otp','Enter a valid OTP of length 8.').isLength({min:8, max:8}).isNumeric()
 ], checkAuth, async (req, res)=>{
     let verdict = false;
 
@@ -422,6 +427,19 @@ router.post('/releaseDoc', upload, [
             await unlinkAsync(req.file.path);
             return res.status(403).json({verdict, messages:["Bad request! Cannot release document with this license no, get admin approval first."]});
         }
+
+        let otp = await OTP.findOne({pin: req.body.otp});
+        if(!otp){ 
+            await unlinkAsync(req.file.path);
+            return res.status(404).json({verdict, messages:["Not found! OTP not found."]});
+        }
+
+        if(otp.licenseno!=req.body.licenseno || otp.healthid!=req.body.healthid){
+            await unlinkAsync(req.file.path);
+            return res.status(400).json({verdict, messages:["Bad request! Invalid OTP provided."]});
+        }
+
+        await OTP.findOneAndDelete({pin: req.body.otp});
 
         let doc;
 
@@ -473,7 +491,7 @@ router.post('/releaseDoc', upload, [
         await Expert.findByIdAndUpdate(user.id, {signatures: [...user.signatures, hex]});
         
         verdict = true;
-        res.status(200).json({verdict, messages:["Success! You have released document successfully."]});
+        res.status(200).json({verdict, messages:["Success! You have released document successfully."], doc});
     }
     catch(error){
         // console.error(error.message);
@@ -483,7 +501,7 @@ router.post('/releaseDoc', upload, [
 
 // ROUTE 9: report patient's doc sus using: POST "/expert/reportSusDoc"; Login required
 router.post('/reportSusDoc', [
-    body('documentid', 'Enter a valid document id of minimum length 10.').isLength({min:10}),
+    body('documentid', 'Enter a valid document id of minimum length 10.').matches(pattern).isLength({min:10}),
 ], checkAuth, async (req, res)=>{
     let verdict = false;
 
@@ -558,7 +576,7 @@ router.post('/listSharedDoc', checkAuth, async (req, res)=>{
 
 // ROUTE 11: verify patient's doc using: POST "/expert/verifyDoc"; Login required
 router.post('/verifyDoc', [
-    body('documentid', 'Enter a valid document id of minimum length 10.').isLength({min:10}),
+    body('documentid', 'Enter a valid document id of minimum length 10.').matches(pattern).isLength({min:10}),
 ], checkAuth, async (req, res)=>{
     let verdict = false;
 
@@ -613,7 +631,8 @@ router.post('/verifyDoc', [
 
 // ROUTE 12: sign patient's doc using: POST "/expert/signDoc"; Login required
 router.post('/signDoc', [
-    body('documentid', 'Enter a valid document id of minimum length 10.').isLength({min:10}),
+    body('documentid', 'Enter a valid document id of minimum length 10.').matches(pattern).isLength({min:10}),
+    body('otp','Enter a valid OTP of length 8.').isLength({min:8, max:8}).isNumeric()
 ], checkAuth, async (req, res)=>{
     let verdict = false;
 
@@ -636,6 +655,15 @@ router.post('/signDoc', [
         if(!doc || !doc.licensenos.includes(user.licenseno)){
             return res.status(403).json({verdict, messages:["Bad request! Cannot sign the doc, you have no access to it."]});
         }
+
+        let otp = await OTP.findOne({pin: req.body.otp});
+        if(!otp){ return res.status(404).json({verdict, messages:["Not found! OTP not found."]});}
+
+        if(otp.licenseno!=user.licenseno || otp.healthid!=doc.healthid){
+            return res.status(400).json({verdict, messages:["Bad request! Invalid OTP provided."]});
+        }
+
+        await OTP.findOneAndDelete({pin: req.body.otp});
 
         if(user.who=='professional' || user.who=='hospital'){
             if(doc.doctype=='prescription' || doc.doctype=='dischargesummaries' || doc.doctype=='testresults' || req.body.doctype=='bill'){
@@ -672,6 +700,457 @@ router.post('/signDoc', [
     }
     catch(error){
         console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 13: add a medicine stock: POST "/expert/addMedicine"; Login required
+router.post('/addMedicine',[
+    body('name','Enter a valid medicine name of minimum length 3.').matches(pattern).isLength({min:3}),
+    body('licenseno', 'Enter a valid licenseno of minimum length 10 with all numeric characters.').isLength({min:10}).isNumeric(),
+    body('price', 'Enter a valid price').isNumeric({min:1}),
+    body('quantity', 'Enter a valid price').isNumeric({min:1}),
+], checkAuth, async (req, res)=>{
+    verdict = false;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {        
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    try{
+        const userId = req.userId;
+        let user = await Expert.findById(userId).select("-password");
+        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot add medicines, you are not verified yet."]});}
+        if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot add medicines, you are banned."]});}
+        
+        if(!(user.who=='pharmacy') || (user.licenseno!=req.body.licenseno)){ return res.status(403).json({verdict, messages:["Bad request! Method not allowed."]});}
+
+        await Medicine.create({
+            name: req.body.name,
+            licenseno: req.body.licenseno,
+            price: req.body.price,
+            quantity: req.body.quantity
+        });
+
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! You have released a medicine successfully."]});
+    }
+    catch(error){
+        // console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 14: list requested orders using: POST "/expert/listRequestedOrders"; Login required
+router.post('/listRequestedOrders', checkAuth, async (req, res)=>{
+    let verdict = false;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    
+    try{
+        // Check with the user with this username exist already
+        let user = await Expert.findById(req.userId);
+        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot list requested orders, you are not verified yet."]});}
+        if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot list requested orders, you are banned."]});}
+        
+        if(!(user.who=='pharmacy')){ return res.status(403).json({verdict, messages:["Bad request! Method not allowed."]});}
+
+        let orders = [];
+        let allOrders = await Order.find({licenseno: user.licenseno});
+        for (let idx = 0; idx < allOrders.length; idx++) {
+            const o = allOrders[idx];
+            if(o.status == 'requested'){
+                orders.push(o);
+            }
+        }
+        
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! Requested orders listed successfully."], orders});
+    }
+    catch(error){
+        // console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 15: cancel patient's medicine request using: POST "/expert/cancelOrderRequest"; Login required
+router.post('/cancelOrderRequest', [
+    body('orderid', 'Enter a valid order id of minimum length 3.').matches(pattern).isLength({min:3}),
+], checkAuth, async (req, res)=>{
+    let verdict = false;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    
+    try{
+        // Check with the user with this username exist already
+        let user = await Expert.findById(req.userId);
+        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot cancel the order request, you are not verified yet."]});}
+        if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot cancel the order request, you are banned."]});}
+
+        if(user.who!='pharmacy'){ return res.status(403).json({verdict, messages:["Bad request! Method not allowed."]});}
+
+        let order = await Order.findById(req.body.orderid);
+        
+        if(!order || order.licenseno != user.licenseno){
+            return res.status(403).json({verdict, messages:["Bad request! Cannot cancel the order request, you have no access to it."]});
+        }
+
+        order = await Order.findByIdAndUpdate(req.body.orderid, {$set: {status: "cancelled"}});
+        
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! Requested order cancelled successfully."]});
+    }
+    catch(error){
+        // console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 16: billed patient's medicine request using: POST "/expert/billOrderRequest"; Login required
+router.post('/billOrderRequest', [
+    body('orderid', 'Enter a valid order id of minimum length 3.').matches(pattern).isLength({min:3}),
+    body('documentid', 'Enter a valid document id of minimum length 10.').matches(pattern).isLength({min:10})
+], checkAuth, async (req, res)=>{
+    let verdict = false;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    
+    try{
+        // Check with the user with this username exist already
+        let user = await Expert.findById(req.userId);
+        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot bill the order, you are not verified yet."]});}
+        if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot bill the order, you are banned."]});}
+
+        if(!(user.who=='pharmacy')){ return res.status(403).json({verdict, messages:["Bad request! Method not allowed."]});}
+
+        let order = await Order.findById(req.body.orderid);
+        
+        if(!order || order.licenseno != user.licenseno){
+            return res.status(403).json({verdict, messages:["Bad request! Cannot bill the order, you have no access to it."]});
+        }
+
+        let doc = await Uploadeddoc.findOne({
+            documentid: req.body.documentid
+        });
+        
+        if(!doc || !doc.licensenos.includes(user.licenseno) || doc.doctype!='bill'){
+            return res.status(403).json({verdict, messages:["Bad request! Cannot attach the doc, method not allowed."]});
+        }
+
+        order = await Order.findByIdAndUpdate(req.body.orderid, {$set: {documentid: req.body.documentid, status: "billed"}});
+        
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! Requested order billed successfully."]});
+    }
+    catch(error){
+        // console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 17: list requested insurance application using: POST "/expert/listRequestedInsuranceApplication"; Login required
+router.post('/listRequestedInsuranceApplication', checkAuth, async (req, res)=>{
+    let verdict = false;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    
+    try{
+        // Check with the user with this username exist already
+        let user = await Expert.findById(req.userId);
+        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot list insurance application, you are not verified yet."]});}
+        if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot list insurance application, you are banned."]});}
+        
+        if(user.who!='insurancefirm'){ return res.status(403).json({verdict, messages:["Bad request! Method not allowed."]});}
+
+        let insurances = [];
+        let allInsurances = await Insurance.find({licenseno: user.licenseno});
+        for (let idx = 0; idx < allInsurances.length; idx++) {
+            const o = allInsurances[idx];
+            if(o.status == 'pending'){
+                insurances.push(o);
+            }
+        }
+        
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! Requested orders listed successfully."], insurances});
+    }
+    catch(error){
+        // console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 18: approve patient's insurance application request using: POST "/expert/approveInsuranceRequest"; Login required
+router.post('/approveInsuranceRequest', [
+    body('insuranceid', 'Enter a valid order id of minimum length 3.').matches(pattern).isLength({min:3})
+], checkAuth, async (req, res)=>{
+    let verdict = false;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    
+    try{
+        // Check with the user with this username exist already
+        let user = await Expert.findById(req.userId);
+        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot appprove insurance request, you are not verified yet."]});}
+        if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot appprove insurance request, you are banned."]});}
+
+        if(user.who!='insurancefirm'){ return res.status(403).json({verdict, messages:["Bad request! Method not allowed."]});}
+
+        let insurance = await Insurance.findById(req.body.insuranceid);
+        
+        if(!insurance || insurance.licenseno != user.licenseno){
+            return res.status(403).json({verdict, messages:["Bad request! Cannot approve insurance request, you have no access to it."]});
+        }
+
+        let patient = await Patient.findOne({healthid: insurance.healthid})
+        if(!patient){return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(patient.wallet < insurance.amountLeft){return res.status(400).json({verdict, messages:["Bad request! Patient do not have enough funds for insurance."]});}
+
+        patient.wallet -= insurance.amountLeft;
+        user.wallet += insurance.amountLeft;
+        patient.save(); 
+        user.save(); 
+
+        await Log.create({
+            details: `${patient.name} paid ${user.name} an amount of ${insurance.amountLeft} for medical insurance.`
+        });
+        
+        await Insurance.findByIdAndUpdate(req.body.insuranceid, {$set: {status: "approved"}});
+        
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! Insurance request approved successfully."]});
+    }
+    catch(error){
+        // console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 19: cancel patient's insurance application request using: POST "/expert/cancelInsuranceRequest"; Login required
+router.post('/cancelInsuranceRequest', [
+    body('insuranceid', 'Enter a valid order id of minimum length 3.').matches(pattern).isLength({min:3})
+], checkAuth, async (req, res)=>{
+    let verdict = false;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    
+    try{
+        // Check with the user with this username exist already
+        let user = await Expert.findById(req.userId);
+        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot reject insurance request, you are not verified yet."]});}
+        if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot reject insurance request, you are banned."]});}
+
+        if(user.who!='insurancefirm'){ return res.status(403).json({verdict, messages:["Bad request! Method not allowed."]});}
+
+        let insurance = await Insurance.findById(req.body.insuranceid);
+        
+        if(!insurance || insurance.licenseno != user.licenseno){
+            return res.status(403).json({verdict, messages:["Bad request! Cannot reject insurance request, you have no access to it."]});
+        }
+
+        await Insurance.findByIdAndUpdate(req.body.insuranceid, {$set: {status: "rejected"}});
+        
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! Insurance request rejected successfully."]});
+    }
+    catch(error){
+        // console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 20: list insurance claims using: POST "/expert/listInsuranceClaims"; Login required
+router.post('/listInsuranceClaims', checkAuth, async (req, res)=>{
+    let verdict = false;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    
+    try{
+        // Check with the user with this username exist already
+        let user = await Expert.findById(req.userId);
+        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot list insurance application, you are not verified yet."]});}
+        if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot list insurance application, you are banned."]});}
+        
+        if(user.who!='insurancefirm'){ return res.status(403).json({verdict, messages:["Bad request! Method not allowed."]});}
+
+        let claims = [];
+        let allClaims = await Claim.find({licenseno: user.licenseno});
+        for (let idx = 0; idx < allClaims.length; idx++) {
+            const o = allClaims[idx];
+            if(o.status == 'pending'){
+                claims.push(o);
+            }
+        }
+        
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! Insurance claims listed successfully."], claims});
+    }
+    catch(error){
+        // console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 21: approve patient's insurance application request using: POST "/expert/approveInsuranceClaim"; Login required
+router.post('/approveInsuranceClaim', [
+    body('claimid', 'Enter a valid claim id of minimum length 3.').matches(pattern).isLength({min:3}),
+    body('amount', 'Enter a valid amount').isNumeric({min:1})
+], checkAuth, async (req, res)=>{
+    let verdict = false;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    
+    try{
+        // Check with the user with this username exist already
+        let user = await Expert.findById(req.userId);
+        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot appprove insurance claim, you are not verified yet."]});}
+        if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot appprove insurance claim, you are banned."]});}
+
+        if(user.who!='insurancefirm'){ return res.status(403).json({verdict, messages:["Bad request! Method not allowed."]});}
+
+        let claim = await Claim.findById(req.body.claimid);
+        
+        if(!claim || claim.licenseno != user.licenseno){
+            return res.status(403).json({verdict, messages:["Bad request! Cannot approve insurance claim, you have no access to it."]});
+        }
+
+        let insurance = await Insurance.findOne({healthid: claim.healthid, licenseno: claim.licenseno})
+        if(!insurance){return res.status(404).json({verdict, messages:["Not found! Insurance not found."]});}
+        
+        let patient = await Patient.findOne({healthid: insurance.healthid})
+        if(!patient){return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+
+        if(insurance.amountLeft < req.body.amount){return res.status(400).json({verdict, messages:["Bad request! Not enough funds left in insurance for the patient."]});}
+
+        patient.wallet += req.body.amount;
+        user.wallet -= req.body.amount;
+        insurance.amountLeft -= req.body.amount;
+        patient.save();
+        user.save();
+        insurance.save();
+
+        await Log.create({
+            details: `${user.name} paid ${patient.name} an amount of ${req.body.amount} for medical insurance claim.`
+        });
+        
+        claim = await Claim.findByIdAndUpdate(req.body.claimid, {$set: {status: "approved"}});
+        
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! Insurance claim approved successfully."]});
+    }
+    catch(error){
+        // console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 22: reject patient's insurance claim  using: POST "/expert/rejectInsuranceClaim"; Login required
+router.post('/rejectInsuranceClaim', [
+    body('claimid', 'Enter a valid claim id of minimum length 3.').matches(pattern).isLength({min:3})
+], checkAuth, async (req, res)=>{
+    let verdict = false;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    
+    try{
+        // Check with the user with this username exist already
+        let user = await Expert.findById(req.userId);
+        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot reject insurance claim, you are not verified yet."]});}
+        if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot reject insurance claim, you are banned."]});}
+
+        if(user.who!='insurancefirm'){ return res.status(403).json({verdict, messages:["Bad request! Method not allowed."]});}
+
+        let claim = await Claim.findById(req.body.claimid);
+        
+        if(!claim || claim.licenseno != user.licenseno){
+            return res.status(403).json({verdict, messages:["Bad request! Cannot reject insurance claim, you have no access to it."]});
+        }
+
+        claim = await Claim.findByIdAndUpdate(req.body.claimid, {$set: {status: "rejected"}});
+        
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! Insurance claim rejected successfully."]});
+    }
+    catch(error){
+        // console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 23: get OTP mail: POST "/expert/sendOTPMail"; Login required
+router.post('/sendOTPMail', [
+    body('healthid', 'Enter a valid healthid of length 10 with all numeric characters.').isLength({min:10, max:10}).isNumeric()
+], checkAuth, async (req, res)=>{
+    let verdict = false;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    
+    try{
+        // Check with the user with this username exist already
+        let user = await Expert.findById(req.userId);
+        if(!user){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
+        if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot send OTP over mail, you are not verified yet."]});}
+        if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot send OTP over mail, you are banned."]});}
+        
+        let otpex = await OTP.findOne({licenseno: user.licenseno, healthid: req.body.healthid});
+        if(otpex){ 
+            await OTP.findOneAndDelete({licenseno: user.licenseno, healthid: req.body.healthid});
+        }
+
+        let purpose = "signing document";
+        let otp = crypto.randomInt(10000000, 100000000);
+        sendMail(user.email, otp, purpose);
+        
+        await OTP.create({
+            healthid: req.body.healthid,
+            licenseno: user.licenseno,
+            pin: otp
+        });
+        
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! OTP for the transaction has been mailed successfully."]});
+    }
+    catch(error){
+        // console.error(error.message);
         res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
     }
 })

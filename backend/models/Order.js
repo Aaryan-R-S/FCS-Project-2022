@@ -10,18 +10,8 @@ const OrderSchema = new Schema({
         type: String,
         required: true
     }, 
-    medicinesid:{
-        type: Array,
-        items: { type: String },
-        required: true
-    },
-    medicinesquantity:{
-        type: Array,
-        items: { type: Number },
-        required: true
-    },
-    totalprice:{
-        type: Number,
+    medicineid:{
+        type: String,
         required: true
     }, 
     prescriptionid:{

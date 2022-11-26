@@ -1,0 +1,6444 @@
+{
+	"info": {
+		"_postman_id": "9b78d01d-db0d-4731-8e65-ac011258cffc",
+		"name": "eCare APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13132993"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "addAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"1234567893\",\r\n    \"password\":\"qwerty7@PQR3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/admin/addAdmin",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"admin",
+								"addAdmin"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "addAdmin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"aaryan200043\",\r\n    \"password\":\"qwerty0@PQR3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/admin/addAdmin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"admin",
+										"addAdmin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "92"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "803"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39-k4JhD4MrifBUIMgMwIjSb0zo0Ek\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 14:38:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! New admin added.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"1234567891\",\r\n    \"password\":\"qwerty7@PQR1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/admin/login",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"aaryan20004\",\r\n    \"password\":\"qwerty0@PQR\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/admin/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"admin",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "94"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "825"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNWU1YTRmMDdhZmEzZjBlODAxYzQzZSIsImlhdCI6MTY2NzIyNzA5MywiZXhwIjoxNjY3MzEzNDkzfQ.4i8IKv5usS7eW3n6AKIpkISoMxcqSYZnuTyYig7ICQc; Path=/; HttpOnly; SameSite=Strict"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-V6dl55ucrXp6tJRESeRjDlpaB8M\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 14:38:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged in successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "adminDetails",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"1234567891\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/admin/adminDetails",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"admin",
+								"adminDetails"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "adminDetails",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"aaryan20004\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/admin/adminDetails",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"admin",
+										"adminDetails"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "883"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "138"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8a-Hc6F68kvWhbaUdhWKFSEWRDTFsY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 16:14:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! Admin details fetched.\"\n    ],\n    \"data\": {\n        \"_id\": \"635e5a4f07afa3f0e801c43e\",\n        \"username\": \"aaryan20004\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "deleteAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"1234567893\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/admin/deleteAdmin",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"admin",
+								"deleteAdmin"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "deleteAdmin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"aaryan200043\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/admin/deleteAdmin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"admin",
+										"deleteAdmin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "96"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "872"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"44-M/MUfLSbgEJ5G9FVMkQ7NxO0A50\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 16:16:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! Admin removed successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/admin/logout",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"admin",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/admin/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"admin",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "99"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "893"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 16:25:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "listPendingUsers",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/admin/listPendingUsers",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"admin",
+								"listPendingUsers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "listPendingUsers",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/admin/listPendingUsers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"admin",
+										"listPendingUsers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "104"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "5133"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"140d-p85Xt4LfCYARbLgGXRRz056pyEA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2022 19:21:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! Pending user listed successfully.\"\n    ],\n    \"patients\": [\n        {\n            \"_id\": \"6363daf2ced0425ef2693992\",\n            \"healthid\": \"1234567892\",\n            \"name\": \"Aaryan R S\",\n            \"dob\": \"2018-05-12T00:00:00.000Z\",\n            \"address\": \"A-108 Gulab Bagh, Delhi-110059\",\n            \"documentid\": \"public\\\\1234567892a4081769541e3866d259c97c7252624e1667488498804.pdf\",\n            \"email\": \"aaryan20004@iiitd.ac.in\",\n            \"phoneno\": \"9999999999\",\n            \"verificationstatus\": \"pending\",\n            \"wallet\": 1000,\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"636bfd85a02e271bdd31d8d5\",\n            \"healthid\": \"1234567893\",\n            \"name\": \"Aaryan R S\",\n            \"dob\": \"2018-05-12T00:00:00.000Z\",\n            \"address\": \"A-108 Gulab Bagh, Delhi-110059\",\n            \"documentid\": \"public\\\\1234567893108341fe7099e3cb0f83baf10c9b484e1668021637172.txt\",\n            \"email\": \"aaryan20004@iiitd.ac.in\",\n            \"phoneno\": \"9999999999\",\n            \"verificationstatus\": \"pending\",\n            \"wallet\": 1000,\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"636bfd90a02e271bdd31d8da\",\n            \"healthid\": \"1234567891\",\n            \"name\": \"Aaryan R S\",\n            \"dob\": \"2018-05-12T00:00:00.000Z\",\n            \"address\": \"A-108 Gulab Bagh, Delhi-110059\",\n            \"documentid\": \"public\\\\1234567891c3988dffe90b389fbff41ab3ad9070781668021647824.txt\",\n            \"email\": \"aaryan20004@iiitd.ac.in\",\n            \"phoneno\": \"9999999999\",\n            \"verificationstatus\": \"pending\",\n            \"wallet\": 1000,\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"636bfd96a02e271bdd31d8df\",\n            \"healthid\": \"1234567894\",\n            \"name\": \"Aaryan R S\",\n            \"dob\": \"2018-05-12T00:00:00.000Z\",\n            \"address\": \"A-108 Gulab Bagh, Delhi-110059\",\n            \"documentid\": \"public\\\\1234567894f8a57f6e6c641af52116b52eb961a0b71668021654093.txt\",\n            \"email\": \"aaryan20004@iiitd.ac.in\",\n            \"phoneno\": \"9999999999\",\n            \"verificationstatus\": \"pending\",\n            \"wallet\": 1000,\n            \"__v\": 0\n        }\n    ],\n    \"experts\": [\n        {\n            \"_id\": \"636abc4c32ac7fefb8ec4647\",\n            \"licenseno\": \"0123456789\",\n            \"publickey\": \"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAyIOFdWA1oY+JsAQKrkYs7LzWvh5lGA6lm4SiTV34yuq4B+wOgRLnTEmdGQFwHEUG0AxjrUEHgtV1d8mT+8m+9wiHApBtMUXfXfwUuP/c9Nteno4V9Bi1a98aDTKTci7MFbft9OG5pkG5+NlgvTclbECz5j0+xPg7uUSUJEiyCe6G+C+lRTowb3B/apaTVWXw4XvXoPxTBf/QUgpclIJ1cjh8rJn0MwTkCGNtpj+AHk0lzS3HEu2+dDZVFarQV17QFTSD2McALopLIpCiAcGidgzLanroTgJavBcGqz6RpAZmaZfnkQaC2DqobiZnKCkIZTqdOf3asVi84SCcpv0/os11M5/eNYPdmh7KAhuAQV7OeMz7xsRpJXOkCYnIZhZunvuTAQQgxDzBnzKSSy+IN++dX8E/kwXV4gzO6wHSA/xESfv83UFWylA8u9gCde5Gy+sPxkEyQciHSpLpEmZn8fsYcYDSgWfy+aSH1F0q+7U8mUV3tJYnOAWkEL/yEd+9uFz2y2NWm8zNfhdpH33Is+XITvjfq7zvC35l9Buc9Bi5ABpfxjCJR4LkXm/TBV4eJuL8X6xeIIgHZj42z6L8MpM5J5lxESV4y0G2elhm/RVWwht7rRlgexvh9H/GhlXUuwtBYbwWF4x/pmaQbQ6KuwCH27sGDFL2BE4M1S+x+FECAwEAAQ==\",\n            \"name\": \"Dr Aaryan R S\",\n            \"dob\": \"2018-05-12T00:00:00.000Z\",\n            \"location\": \"Delhi\",\n            \"images\": [\n                \"public\\\\012345678963ec035594413fa030d80c4de9155ebf1667939404484.jpg\",\n                \"public\\\\0123456789a8c69faf8340c73009334644a187074e1667939404485.jpg\"\n            ],\n            \"documentid\": \"public\\\\0123456789ba36c05c93732097955d353124a5eca11667939404482.txt\",\n            \"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n            \"email\": \"aaryan20004@iiitd.ac.in\",\n            \"phoneno\": \"9999999999\",\n            \"verificationstatus\": \"pending\",\n            \"wallet\": 1000,\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"636abc6032ac7fefb8ec4650\",\n            \"licenseno\": \"0123456781\",\n            \"publickey\": \"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAzh7bELvo0matLCeEgjGzVjeeLcNddjm3CxpfVSirHZKl7Bw6TSlH6exmQyHq/VX/NsclSLAqnusHdt17mGbsEmriWul/w0ziL64HeoXxqJuODspN5lgNrzdlabWMwkSH2rJviuY95CnbuAIl+ebsY3yYYJhvF7BnIFV9a2uJdN2ozLnO9nUxynPRFtcHLVEEkLHyHgagmZ82VjMmAVMbzHkSRhEsvxiutWGUKe2V2EnVHKA6BpLgTxftVJTZiloCxKHD7b4yGSvx2qwtpJ0hs/EkJqTLL2IXtrVX2Eb46wUnTcho0yo9/b93A7HOVUwr4ksvYWGRPZc16Y5qC4U6rFQUzDRhMgF2WFlpkFqvU9lD7paLbQlifcjCpWAhryZb74yla2eW2RAHETaHgiZdHnNmghqnFPZ+g81LePguu1wcUsCU+E0CuY8X+bR60Aqr5Ub2VkFbFUXZNWDnqbU/rDJH6la/Tx/D9al7WaxyXjjJbchJzYA7kPQgSzUFrSaTqVbY/ru6Bkn5RoEv5Ahxaccwlj75zKKwFs07f0TSu8b/zBBGfbw4aRY3LmXt+DzROqoWi9EeRrc2USCwTaQMdHJ/uuNN5OQNSnkqAZYvcPpY3lPg+bOk4UZPLULbuLr1GCR/QSOLR0I2wbHqkK42LOrVgle6j0ki6cmIQlEKgkcCAwEAAQ==\",\n            \"name\": \"Dr Aaryan R S\",\n            \"dob\": \"2018-05-12T00:00:00.000Z\",\n            \"location\": \"Delhi\",\n            \"images\": [\n                \"public\\\\0123456781f6d66986c96bada147d2f301051afc8c1667939423531.jpg\",\n                \"public\\\\0123456781b90a71af535ea4380d1495335cf627e31667939423531.jpg\"\n            ],\n            \"documentid\": \"public\\\\012345678108509fe523344671cd83aec4241bb27d1667939423531.txt\",\n            \"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n            \"email\": \"aaryan20004@iiitd.ac.in\",\n            \"phoneno\": \"9999999999\",\n            \"verificationstatus\": \"pending\",\n            \"wallet\": 1000,\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "banUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"3234567895\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/admin/banUser",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"admin",
+								"banUser"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "removeUser",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"1234567894\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/admin/removeUser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"admin",
+										"removeUser"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "66"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "78"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4e-dVf79igsNFign2ho32JHxvI6i0I\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2022 19:26:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! User removed and banned successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "approveUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"3234567894\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/admin/approveUser",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"admin",
+								"approveUser"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "approveUser",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"0123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/admin/approveUser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"admin",
+										"approveUser"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "96"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "51"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"44-1yj5p3GYNaVEGeup1LYUICvsFjQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2022 19:28:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! User approved successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "verifyUserAgain",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"3234567894\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/admin/verifyUserAgain",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"admin",
+								"verifyUserAgain"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verifyUserAgain",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"0123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/admin/verifyUserAgain",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"admin",
+										"verifyUserAgain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "99"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "109"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "77"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4d-LD80Z8YxLkTTowm7CYCTpGip56Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2022 19:29:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! User has been asked to verify again.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "listSusDocs",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/admin/listSusDocs",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"admin",
+								"listSusDocs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "listSusDocs",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/admin/listSusDocs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"admin",
+										"listSusDocs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "95"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "22"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"54-bHpA2TOiJxHnpM0g25/6g+BpUK8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2022 19:31:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! Pending user listed successfully.\"\n    ],\n    \"docs\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "removeUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"3234567896\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/admin/removeUser",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"admin",
+								"removeUser"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "removeUser",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"1234567894\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/admin/removeUser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"admin",
+										"removeUser"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "66"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "78"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4e-dVf79igsNFign2ho32JHxvI6i0I\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2022 19:26:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! User removed and banned successfully.\"\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "patient",
+			"item": [
+				{
+					"name": "addPatient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "healthid",
+									"value": "2234167888",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "qwerty7@PQRH6",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Aaryan R S",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "dob",
+									"value": "2018-05-12",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "A-108 Gulab Bagh, Delhi-110059",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "aaryan20004@iiitd.ac.in",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "phoneno",
+									"value": "9999999999",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "doctype",
+									"value": "healthid",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"contentType": "",
+									"type": "file",
+									"src": "/C:/Users/rahul/Desktop/aadhar.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/addPatient",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"addPatient"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "addPatient",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "healthid",
+											"value": "1234567893",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "qwerty0@PQRh3",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Aaryan R S",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "dob",
+											"value": "2018-05-12",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "A-108 Gulab Bagh, Delhi-110059",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "aaryan20004@iiitd.ac.in",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "phoneno",
+											"value": "9999999999",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "doctype",
+											"value": "healthid",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/aarya/Desktop/sample/course-plan.txt"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/addPatient",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"addPatient"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "98"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "106"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3a-9+o5OwVXUkDKEHbcduPqSEfojTM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:45:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! New person added.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"healthid\":\"2234567891\",\r\n    \"password\":\"qwerty7@PQRH1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/login",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"healthid\":\"1234567891\",\r\n    \"password\":\"qwerty0@PQRh\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "98"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "90"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjNkNDZjZWJlYzg5MDFhNzI4ZDdhMSIsImlhdCI6MTY2NzQ5NDE4NCwiZXhwIjoxNjY3NTgwNTg0fQ.8NPLNSRreiGgIOwdU08_dpokOIyR07rP-FRpSl9sQCE; Path=/; HttpOnly; SameSite=Strict"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-V6dl55ucrXp6tJRESeRjDlpaB8M\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:49:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged in successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "patientDetails",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/patientDetails",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"patientDetails"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "patientDetails",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"aaryan20004\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/patientDetails",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"patientDetails"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "99"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "119"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "417"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1a1-nOcFV8Qdkwx2xfEy44L1SOS6Azw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:51:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! User details fetched.\"\n    ],\n    \"data\": {\n        \"_id\": \"6363d46cebec8901a728d7a1\",\n        \"healthid\": \"1234567891\",\n        \"name\": \"Aaryan R S\",\n        \"dob\": \"2018-05-12T00:00:00.000Z\",\n        \"address\": \"A-108 Gulab Bagh, Delhi-110059\",\n        \"documentid\": \"public\\\\12345678919ee52cab6638769935479fdb2689c2681667486828174.txt\",\n        \"email\": \"aaryan20004@iiitd.ac.in\",\n        \"phoneno\": \"9999999999\",\n        \"verificationstatus\": \"pending\",\n        \"wallet\": 1000,\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "deletePatient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/deletePatient",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"deletePatient"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "deleteAdmin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"aaryan200043\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/admin/deleteAdmin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"admin",
+										"deleteAdmin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "96"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "872"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"44-M/MUfLSbgEJ5G9FVMkQ7NxO0A50\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 16:16:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! Admin removed successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/logout",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "modifyDetails",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"qwerty7@PQRH3\",\r\n    \"name\": \"Aaryan R S\",\r\n    \"dob\": \"2018-05-12\",\r\n    \"address\": \"A-108 Gulab Bagh, Delhi-110059\",\r\n    \"email\": \"aaryan20004@iiitd.ac.in\",\r\n    \"phoneno\": \"9999999999\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/modifyDetails",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"modifyDetails"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "modifyDetails",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"qwerty0@PQRh3\",\r\n    \"name\": \"Aaryan R S\",\r\n    \"dob\": \"2018-05-12\",\r\n    \"address\": \"A-108 Gulab Bagh, Delhi-110059\",\r\n    \"email\": \"aaryan20004@iiitd.ac.in\",\r\n    \"phoneno\": \"9999999999\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/modifyDetails",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"modifyDetails"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "98"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "92"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjNkYWYyY2VkMDQyNWVmMjY5Mzk5MiIsImlhdCI6MTY2NzkzMjMxMCwiZXhwIjoxNjY4MDE4NzEwfQ.BqSuERrGXFQo4216mxOsAiZWDDS-T2pGKfqVNlaSxLk; Path=/; HttpOnly; SameSite=Strict"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-7PhizBLB3NcCr6+MU0x1BkVYlAQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 18:31:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! User details modified.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "verifyPatientAgain",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "healthid",
+									"value": "2234567891",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/aarya/Desktop/sample/course-plan.txt"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/verifyPatientAgain",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"verifyPatientAgain"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verifyPatientAgain",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "healthid",
+											"value": "1234567893",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/aarya/Desktop/sample/Format A.docx"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/verifyPatientAgain",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"verifyPatientAgain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "99"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "116"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"58-1GJ97sAxzWfZ1tPJqWZoDvSt1wA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2022 20:36:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have applied for verification successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "filterExpert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"who\":\"professional\",\r\n    \"name\":\"Textsdjj asdc jjajd!123345667890!@%&*()_- {}[]():;',./?|\\\\jjsbjhfjbKUWOUERHFSJKKVFBSJH';';\",\r\n    \"location\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/filterExperts",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"filterExperts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "listDocs",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/listDocs",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"listDocs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "deleteDoc",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"documentid\":\"public\\\\2234567891f04467a76cf52055a41acc71025607e11668117006787.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/deleteDoc",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"deleteDoc"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "uploadDoc",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "healthid",
+									"value": "2234567896",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/aarya/Desktop/sample/cold_calling.txt"
+								},
+								{
+									"key": "doctype",
+									"value": "prescription",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/uploadDoc",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"uploadDoc"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "shareDoc",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"licenseno\":\"3234567891\",\r\n    \"documentid\":\"public\\\\2234567891f6e7054bf91af5856983a9e21d50d5471668263237228.txt\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/shareDoc",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"shareDoc"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "listMedicines",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/listMedicines",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"listMedicines"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "requestMedicine",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"medicine\":\"Paracetamol\",\r\n    \"documentid\":\"public\\\\22345678910ad09dba7757900a42a50a62dcb449601668116419125.pdf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/requestMedicine",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"requestMedicine"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "listBilledOrders",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/listBilledOrders",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"listBilledOrders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "payBilledOrder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderid\":\"6381c157de92f899dcc3b55d\",\r\n    \"otp\":\"71754930\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/payBilledOrder",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"payBilledOrder"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "requestInsurance",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"licenseno\":\"3234567894\",\r\n    \"amount\":100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/requestInsurance",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"requestInsurance"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "listInsurances",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/listInsurances",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"listInsurances"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "makeInsuranceClaim",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"licenseno\": \"3234567894\",\r\n    \"documentid\":\"public\\\\2234567891168b085e5eb330e65cc700127b50ea211669448929708.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/makeInsuranceClaim",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"makeInsuranceClaim"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "sendOTPMail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"licenseno\": \"3234567893\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/patient/sendOTPMail",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"patient",
+								"sendOTPMail"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verifyExpertAgain",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "licenseno",
+											"value": "0123456789",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/aarya/Desktop/sample/Format A.docx"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3500/expert/verifyExpertAgain",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"expert",
+										"verifyExpertAgain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "99"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "94"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"58-1GJ97sAxzWfZ1tPJqWZoDvSt1wA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2022 21:04:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have applied for verification successfully.\"\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "expert",
+			"item": [
+				{
+					"name": "addExpert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "licenseno",
+									"value": "3234567896",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "qwerty7@PQRE6",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "who",
+									"value": "insurancefirm",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Dr Aaryan R S",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "dob",
+									"value": "2018-05-12",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "Delhi",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "aaryan20004@iiitd.ac.in",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "phoneno",
+									"value": "9999999999",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "doctype",
+									"value": "licenseno",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "files",
+									"type": "file",
+									"src": [
+										"/C:/Users/aarya/Desktop/sample/01 Transcript Year I.pdf",
+										"/C:/Users/aarya/Desktop/sample/IIITD.jpg",
+										"/C:/Users/aarya/Desktop/sample/IIITD1.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/addExpert",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"addExpert"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "addPatient",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "healthid",
+											"value": "1234567893",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "qwerty0@PQRh3",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Aaryan R S",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "dob",
+											"value": "2018-05-12",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "A-108 Gulab Bagh, Delhi-110059",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "aaryan20004@iiitd.ac.in",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "phoneno",
+											"value": "9999999999",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "doctype",
+											"value": "healthid",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/aarya/Desktop/sample/course-plan.txt"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/addPatient",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"addPatient"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "98"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "106"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3a-9+o5OwVXUkDKEHbcduPqSEfojTM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:45:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! New person added.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"licenseno\":\"3234567894\",\r\n    \"password\":\"qwerty7@PQRE4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/login",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"licenseno\":\"0123456789\",\r\n    \"password\":\"qwerty2@PQR\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/expert/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"expert",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "98"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "87"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNmFiYTg5NzdlNWU1YmY2NTk4Yjc2ZCIsImlhdCI6MTY2NzkzOTEzNCwiZXhwIjoxNjY4MDI1NTM0fQ._2pYyCB8oe7mYdJ8Y2Q8N8nDyFss95BkM9EVdJaixt4; Path=/; HttpOnly; SameSite=Strict"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-V6dl55ucrXp6tJRESeRjDlpaB8M\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 20:25:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged in successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "expertDetails",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"aaryan20004\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/expertDetails",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"expertDetails"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "expertDetails",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"aaryan20004\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/expert/expertDetails",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"expert",
+										"expertDetails"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "62"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1890"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"762-P/roIQ0soy/yRyQOlY9tLSMzcw0\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 20:25:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! User details fetched.\"\n    ],\n    \"data\": {\n        \"_id\": \"636aba8977e5e5bf6598b76d\",\n        \"licenseno\": \"0123456789\",\n        \"publickey\": \"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA7OkdhgEykmJg6AXxi5QnxdBqYpxzd+55Jz8a8uo60NO4On8Frl7o1SaCR4k+deq/3gQj8fZITjZ8ojcro3PcSmlxtFmoNBAvfcxLQvvz2BPMTHknfP1ddWLgsxnpL/6ZeEVcb47h4pPRMHLG47NuFFw5l6AfOz1QcIY4741WXheHs3d7bnpkZVm3SD/30Yt2ptkqgtsCqxH+7NzNFCXrxjm62DERy9QLJLyMBTLhHmPW7llNCItKC0CsDiC0GxibbRiBys+9rZ9BYIhO+qYmPQ3ylvvaq7ky0qGZU7nlFZi2GLWsrHIHSdGxwKmtHAMGaWME/DWbhIzvg/doTXaCiJW6mnxd3oCBDLFHv9qWGOPX3izQOQoTLkmaBO3nUVU+3ophHSPWuX6LEz6JtnSdx1uWbrmeQ+hOgF90ZtwhSheXHEAqTHYLp2DAWAvxh4/PvXY5ZI8I+lzcp2AxtOnrBRSaEkzMSnoMPMoreccIeGmVbRyRseEfSaOBSL0ZkTZh6zmzxYwhnLaFnZy2buryVrcqPTTvod0Bw0uMyrFTs9lj+NOWH+gdml7oTNC4Nkr246PlV8Fpwak0eV9tDkYtFV7ibIRCYQFf6nwKWL64A2tfvPpyrCHFRXzdCp5gIXMUEIKRPSuJ95UwtWhg67qlsclmWb7wHl9o7KFRFXTJpjUCAwEAAQ==\",\n        \"name\": \"Dr Aaryan R S\",\n        \"dob\": \"2018-05-12T00:00:00.000Z\",\n        \"location\": \"Delhi\",\n        \"images\": [\n            \"public\\\\0123456789cd65032c1751203e42d528bf407ff2841667938950917.jpg\",\n            \"public\\\\01234567895ebb76f827dfa2a164a5f96663ec3bdd1667938950917.jpg\"\n        ],\n        \"documentid\": \"public\\\\01234567892c412c49cc43fdb96a83c2c064f6fdba1667938950916.txt\",\n        \"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n        \"email\": \"aaryan20004@iiitd.ac.in\",\n        \"phoneno\": \"9999999999\",\n        \"verificationstatus\": \"pending\",\n        \"wallet\": 1000,\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "deleteExpert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/deleteExpert",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"deleteExpert"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "deleteExpert",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/expert/deleteExpert",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"expert",
+										"deleteExpert"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "98"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "69"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43-DloD8k2RuQCEk/SiWg7Y8DWbFA0\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 20:22:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! User removed successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/logout",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/expert/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"expert",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "96"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "44"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 20:22:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "modifyDetails",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"qwerty7@PQRE4\",\r\n    \"name\": \"Dr Aaryan R S Ji\",\r\n    \"dob\": \"2018-05-12\",\r\n    \"location\": \"Delhi\",\r\n    \"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\r\n    \"email\": \"aaryan20004@iiitd.ac.in\",\r\n    \"phoneno\": \"9999999999\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/modifyDetails",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"modifyDetails"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "modifyDetails",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"qwerty2@PQR\",\r\n    \"name\": \"Dr Aaryan R S Ji\",\r\n    \"dob\": \"2018-05-12\",\r\n    \"location\": \"Delhi\",\r\n    \"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\r\n    \"email\": \"aaryan20004@iiitd.ac.in\",\r\n    \"phoneno\": \"9999999999\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/expert/modifyDetails",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"expert",
+										"modifyDetails"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "98"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "106"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNmFiYTg5NzdlNWU1YmY2NTk4Yjc2ZCIsImlhdCI6MTY2NzkzOTM1NSwiZXhwIjoxNjY4MDI1NzU1fQ.VeRdGefca7SzVcuz4hoHdipe9pgTIlFjgXP9yQpzBm8; Path=/; HttpOnly; SameSite=Strict"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-7PhizBLB3NcCr6+MU0x1BkVYlAQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 20:29:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! User details modified.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "verifyExpertAgain",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "licenseno",
+									"value": "3234567894",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/aarya/Desktop/sample/Format A.docx"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/verifyExpertAgain",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"verifyExpertAgain"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verifyExpertAgain",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "licenseno",
+											"value": "0123456789",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/aarya/Desktop/sample/Format A.docx"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3500/expert/verifyExpertAgain",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"expert",
+										"verifyExpertAgain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "99"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "94"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"58-1GJ97sAxzWfZ1tPJqWZoDvSt1wA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2022 21:04:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have applied for verification successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "releaseDoc",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "healthid",
+									"value": "2234567891",
+									"type": "text"
+								},
+								{
+									"key": "licenseno",
+									"value": "3234567893",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/aarya/Desktop/sample/IIITD1.jpg"
+								},
+								{
+									"key": "doctype",
+									"value": "bill",
+									"type": "text"
+								},
+								{
+									"key": "otp",
+									"value": "85693378",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/releaseDoc",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"releaseDoc"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verifyExpertAgain",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "licenseno",
+											"value": "0123456789",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/aarya/Desktop/sample/Format A.docx"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3500/expert/verifyExpertAgain",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"expert",
+										"verifyExpertAgain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "99"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "94"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"58-1GJ97sAxzWfZ1tPJqWZoDvSt1wA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2022 21:04:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have applied for verification successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "reportSusDoc",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"documentid\":\"public\\\\2234567891f6e7054bf91af5856983a9e21d50d5471668263237228.txt\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/reportSusDoc",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"reportSusDoc"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verifyExpertAgain",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "licenseno",
+											"value": "0123456789",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/aarya/Desktop/sample/Format A.docx"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3500/expert/verifyExpertAgain",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"expert",
+										"verifyExpertAgain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "99"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "94"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"58-1GJ97sAxzWfZ1tPJqWZoDvSt1wA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2022 21:04:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have applied for verification successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "listSharedDoc",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/listSharedDoc",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"listSharedDoc"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verifyExpertAgain",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "licenseno",
+											"value": "0123456789",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/aarya/Desktop/sample/Format A.docx"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3500/expert/verifyExpertAgain",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"expert",
+										"verifyExpertAgain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "99"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "94"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"58-1GJ97sAxzWfZ1tPJqWZoDvSt1wA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2022 21:04:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have applied for verification successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "verifyDoc",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"documentid\":\"public\\\\2234567891f6e7054bf91af5856983a9e21d50d5471668263237228.txt\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/verifyDoc",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"verifyDoc"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verifyExpertAgain",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "licenseno",
+											"value": "0123456789",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/aarya/Desktop/sample/Format A.docx"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3500/expert/verifyExpertAgain",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"expert",
+										"verifyExpertAgain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "99"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "94"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"58-1GJ97sAxzWfZ1tPJqWZoDvSt1wA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2022 21:04:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have applied for verification successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "signDoc",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"documentid\":\"public\\\\2234567891f6e7054bf91af5856983a9e21d50d5471668263237228.txt\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/signDoc",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"signDoc"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verifyExpertAgain",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "licenseno",
+											"value": "0123456789",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/aarya/Desktop/sample/Format A.docx"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3500/expert/verifyExpertAgain",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"expert",
+										"verifyExpertAgain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "99"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "94"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"58-1GJ97sAxzWfZ1tPJqWZoDvSt1wA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2022 21:04:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have applied for verification successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "addMedicine",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Combiflam\",\r\n    \"licenseno\":\"3234567893\",\r\n    \"price\": 30,\r\n    \"quantity\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/addMedicine",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"addMedicine"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verifyExpertAgain",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "licenseno",
+											"value": "0123456789",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/aarya/Desktop/sample/Format A.docx"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3500/expert/verifyExpertAgain",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"expert",
+										"verifyExpertAgain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "99"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "94"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"58-1GJ97sAxzWfZ1tPJqWZoDvSt1wA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2022 21:04:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have applied for verification successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "listRequestedOrders",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/listRequestedOrders",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"listRequestedOrders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "cancelOrderRequest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderid\":\"6381c157de92f899dcc3b55d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/cancelOrderRequest",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"cancelOrderRequest"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "billOrderRequest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderid\":\"6381c157de92f899dcc3b55d\",\r\n    \"documentid\":\"public\\\\2234567891168b085e5eb330e65cc700127b50ea211669448929708.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/billOrderRequest",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"billOrderRequest"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "listRequestedInsuranceApplication",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/listRequestedInsuranceApplication",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"listRequestedInsuranceApplication"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "approveInsuranceRequest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"insuranceid\":\"63821ef2b6271aef35e45f82\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/approveInsuranceRequest",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"approveInsuranceRequest"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "cancelInsuranceRequest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"insuranceid\":\"63821ef2b6271aef35e45f82\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/cancelInsuranceRequest",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"cancelInsuranceRequest"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "listInsuranceClaims",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/listInsuranceClaims",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"listInsuranceClaims"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "approveInsuranceClaim",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"claimid\":\"638227bfbb535e5471441ae3\",\r\n    \"amount\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/approveInsuranceClaim",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"approveInsuranceClaim"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "rejectInsuranceClaim",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"claimid\":\"638227bfbb535e5471441ae3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/rejectInsuranceClaim",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"rejectInsuranceClaim"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3500/patient/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"patient",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "97"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "63"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-HrYT/tUXFD/qavTAlmomuDZA4/Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 03 Nov 2022 16:52:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have logged out successfully.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "sendOTPMail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"healthid\": \"2234567891\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{devURL}}/expert/sendOTPMail",
+							"host": [
+								"{{devURL}}"
+							],
+							"path": [
+								"expert",
+								"sendOTPMail"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verifyExpertAgain",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "licenseno",
+											"value": "0123456789",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/aarya/Desktop/sample/Format A.docx"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3500/expert/verifyExpertAgain",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3500",
+									"path": [
+										"expert",
+										"verifyExpertAgain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "RateLimit-Limit",
+									"value": "100"
+								},
+								{
+									"key": "RateLimit-Remaining",
+									"value": "99"
+								},
+								{
+									"key": "RateLimit-Reset",
+									"value": "94"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"58-1GJ97sAxzWfZ1tPJqWZoDvSt1wA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2022 21:04:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"verdict\": true,\n    \"messages\": [\n        \"Success! You have applied for verification successfully.\"\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Sample GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{devURL}}/",
+					"host": [
+						"{{devURL}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Sample GET",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3500/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "RateLimit-Limit",
+							"value": "100"
+						},
+						{
+							"key": "RateLimit-Remaining",
+							"value": "97"
+						},
+						{
+							"key": "RateLimit-Reset",
+							"value": "886"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "12"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"c-Lve95gjOVATpfV8EL5X4nxwjKHE\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 31 Oct 2022 14:37:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Hello World!"
+				}
+			]
+		},
+		{
+			"name": "Sample GET IP",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{devURL}}/ip",
+					"host": [
+						"{{devURL}}"
+					],
+					"path": [
+						"ip"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Sample GET IP",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3500/ip",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3500",
+							"path": [
+								"ip"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "RateLimit-Limit",
+							"value": "100"
+						},
+						{
+							"key": "RateLimit-Remaining",
+							"value": "98"
+						},
+						{
+							"key": "RateLimit-Reset",
+							"value": "889"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3-NjuuqcuiEK+sbXpVb8pZbjDEYzM\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 31 Oct 2022 14:37:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "::1"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "devURL",
+			"value": "http://localhost:3500",
+			"type": "string"
+		},
+		{
+			"key": "prodURL",
+			"value": "http://192.168.3.40/api",
+			"type": "string"
+		}
+	]
+}

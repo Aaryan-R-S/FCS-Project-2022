@@ -9,9 +9,9 @@ User
 Patients
 ✔ view/search/location filter (who, name and location) on details of professionals and hospitals after checkup @done (11/11/2022, 4:54:06 AM)
 ✔ request his/her documents from professionals and hospitals after checkup @done (11/10/2022, 3:30:07 PM)
-☐ buy medicines (using prescriptions)
-☐ buy medical insurance from any insurance firm
-☐ clain medical reimbursement from any insurance firm
+✔ buy medicines (using prescriptions) @done (11/26/2022, 1:48:55 PM)
+✔ buy medical insurance from any insurance firm @done (11/26/2022, 8:32:46 PM)
+✔ claim medical reimbursement from any insurance firm @done (11/26/2022, 8:32:46 PM)
 ✔ list documents @done (11/11/2022, 5:04:00 AM)
 ✔ upload and share documents (check verification) @done (11/12/2022, 8:33:47 PM)
 ✔ delete documents (yes can't be verified anymore) @done (11/11/2022, 5:27:47 AM)
@@ -29,13 +29,13 @@ Hospitals
 ✔ report a doc suspicious provided shared @done (11/12/2022, 8:34:17 PM)
 
 Pharmacy
-☐ sell medicines and provide bills (if verified prescriptions)
+✔ sell medicines and provide bills (if verified prescriptions) @done (11/26/2022, 1:48:59 PM)
 ✔ sign doc if not verified @done (11/12/2022, 8:34:22 PM)
 ✔ report a doc suspicious provided shared @done (11/12/2022, 8:34:22 PM)
 
 Insurance firm
-☐ takes initial money from patients and then make them eligible for medical claims
-☐ Give medical reimbursement after verification of documents uploaded
+✔ takes initial money from patients and then make them eligible for medical claims @done (11/26/2022, 8:32:49 PM)
+✔ Give medical reimbursement after verification of documents uploaded @done (11/26/2022, 8:32:49 PM)
 ✔ report a doc suspicious provided shared @done (11/12/2022, 8:34:24 PM)
 
 Documents
@@ -44,15 +44,21 @@ Documents
 ✔ verified automatically @done (11/12/2022, 8:39:14 PM)
 
 Payment system
-☐ assign initial money to each user and in the way of operations manage the money exchange
+✔ assign initial money to each user and in the way of operations manage the money exchange @done (11/26/2022, 1:49:05 PM)
 
 Others requirements
 ✔ File serve and handling [https://afteracademy.com/blog/file-upload-with-multer-in-nodejs-and-express | https://www.section.io/engineering-education/uploading-files-using-multer-nodejs/] @done (11/12/2022, 11:57:13 PM)
 ✔ SHA256 hash [https://gist.github.com/GuillermoPena/9233069] @done (11/12/2022, 11:57:25 PM)
-☐ Payment transaction loggings
-☐ CSRF Check [https://github.com/pcktuts/csrf-demo-express-js | https://stackoverflow.com/questions/27067251/where-to-store-jwt-in-browser-how-to-protect-against-csrf]
-☐ OTP (at least two) to validate highly sensitive transactions (OTP at time of payment + OTP at time of signing documents)
+✔ Payment transaction loggings @done (11/26/2022, 1:49:07 PM)
+✔ OTP (at least two) to validate highly sensitive transactions (OTP at time of payment + OTP at time of signing documents) @done (11/26/2022, 1:49:11 PM)
+✔ XSS Input Sanitize + Output Encoding [https://www.section.io/engineering-education/how-to-prevent-cross-site-scripting-in-node-js/ | Backend] @done (11/26/2022, 8:36:16 PM)
+☐ CSRF Token [https://github.com/pcktuts/csrf-demo-express-js | https://stackoverflow.com/questions/27067251/where-to-store-jwt-in-browser-how-to-protect-against-csrf]
 ☐ Blockchain verification [https://blog.logrocket.com/build-cryptocurrency-node-js-blockchain/]
+☐ Add nginx configs for DOS attack [https://www.upguard.com/blog/10-tips-for-securing-your-nginx-deployment | https://stackoverflow.com/questions/10550558/nginx-tcp-websockets-timeout-keepalive-config]
+☐ DOS Check [set numberofProxies]
 ☐ Highly sensitive transactions with virtual keyboard (For password at time of login - Frontend only)
-☐ DOS Check [set numberfProxies]
 ☐ Captcha at time of account creation (OPTIONAL: Frontend + Backend) [https://levelup.gitconnected.com/how-to-implement-recaptcha-in-a-react-application-6098c506d750 | https://blog.logrocket.com/implement-recaptcha-react-application/]
+
+Building Documentation
+✔ Export APIs from postman @done (11/27/2022, 12:08:07 AM)
+✔ Run ./postman_doc_gen 'eCare APIs.postman_collection.json' -o doc @done (11/27/2022, 12:08:08 AM)
