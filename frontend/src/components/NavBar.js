@@ -1,38 +1,22 @@
-//always write component name in capitals
-import React from 'react'
-// import PropTypes from 'prop-types'
-// import { Link } from 'react-router-dom'
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
-export default function NavBar() {
+function NavBar() {
   return (
     <>
-    <nav className="navbar navbar-dark bg-light">
-        <ul className="nav nav-pills">
-        <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li className="nav-item">
-            <a className="nav-link" href="/patient">Patient</a>
-        </li>
-        <li className="nav-item">
-            <a className="nav-link" href="/admin">Admin</a>
-        </li>
-        <li className="nav-item">
-            <a className="nav-link disable" href="/expert">Expert</a>
-        </li>
-        </ul>
-    </nav>
+      <Navbar fixed='top' bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand href="/">Home</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="/admin">Admin</Nav.Link>
+            <Nav.Link href="/patient">Patient</Nav.Link>
+            <Nav.Link href="/expert">Expert</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
     </>
-  )
+  );
 }
 
-//define the datatype of a prop so as to avoid bugs=> ckecks
-// Navbar.propTypes={
-//     title: PropTypes.string.isRequired,
-//     aboutText: PropTypes.string.isRequired //this prop is needed either passed or dafault
-// }
-
-// //default values if the specific prop is not passes 
-// Navbar.defaultProps={
-//     title: 'set title'
-// }
+export default NavBar;

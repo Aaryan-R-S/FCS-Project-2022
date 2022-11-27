@@ -1,24 +1,38 @@
-import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Patient from './components/Patient';
-import NavBar from './components/NavBar';
+import { Fragment, React } from "react";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
+import ScrollToTop from "./ScrollToTop";
+import NavBar from "./components/NavBar";
+import Home from "./components/Home";
+// import Admin from './components/Admin';
+import Patient from "./components/Patient";
+// import Expert from './components/Expert';
 
 function App() {
-  return (
-    <>
-    <NavBar/>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/">
-          {/* <Route index element={<Home />} /> */}
-          <Route path="patient" element={<Patient />} />
-          {/* <Route path="contact" element={<Contact />} />
-          <Route path="*" element={<NoPage />} /> */}
-        </Route>
-      </Routes>
-    </BrowserRouter>
-    </>
-  );
+    return (
+        <>
+            <BrowserRouter>
+                <NavBar />
+                <Fragment>
+                    <ScrollToTop />
+                    <Switch>
+                        <Route exact path="/">
+                            <Home />
+                        </Route>
+                        {/* <Route exact path="/admin">
+                            <Admin />
+                        </Route> */}
+                        <Route exact path="/patient">
+                            <Patient />
+                        </Route>
+                        {/* <Route exact path="/expert">
+                            <Expert />
+                        </Route> */}
+                        <Route component={Home} />
+                    </Switch>
+                </Fragment>
+            </BrowserRouter>
+        </>
+    );
 }
 
 export default App;

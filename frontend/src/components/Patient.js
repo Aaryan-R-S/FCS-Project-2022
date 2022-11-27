@@ -1,7 +1,8 @@
 import React from 'react'
-import PatientDetails from '../patient/PatientDetails'
-import Login from '../patient/Login'
-import ModifyDetails from '../patient/ModifyDetails'
+import '../App.css'
+import PatientDetails from './patient/PatientDetails'
+import Login from './patient/Login'
+import ModifyDetails from './patient/ModifyDetails'
 
 export default function Patient() {
     
