@@ -10,12 +10,12 @@ export default function Login() {
         dict.healthid=document.getElementById("healthid").value
         dict.password=document.getElementById("pass").value
         // console.log(dict)
-
+        let url =  (process.env.REACT_APP_NODE_ENV === "prod"? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_DEV_URL)
         let a = axios.create({
-            baseURL: "http://localhost:3500/patient",
+            baseURL: url,
         });
         let res = await a.post(
-            "/login",
+            "/patient/login",
             JSON.stringify({ healthid:dict.healthid, password:dict.password }),
             {
                 withCredentials: true,
