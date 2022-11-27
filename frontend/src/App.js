@@ -5,7 +5,7 @@ import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import Admin from './components/Admin';
 import Patient from "./components/Patient";
-// import Expert from './components/Expert';
+import Expert from './components/Expert';
 
 function App() {
     return (
@@ -24,9 +24,9 @@ function App() {
                         <Route exact path="/patient">
                             <Patient />
                         </Route>
-                        {/* <Route exact path="/expert">
+                        <Route exact path="/expert">
                             <Expert />
-                        </Route> */}
+                        </Route>
                         <Route component={Home} />
                     </Switch>
                 </Fragment>
