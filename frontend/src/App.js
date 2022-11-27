@@ -3,7 +3,7 @@ import { Switch, Route, BrowserRouter } from "react-router-dom";
 import ScrollToTop from "./ScrollToTop";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
-// import Admin from './components/Admin';
+import Admin from './components/Admin';
 import Patient from "./components/Patient";
 // import Expert from './components/Expert';
 
@@ -18,9 +18,9 @@ function App() {
                         <Route exact path="/">
                             <Home />
                         </Route>
-                        {/* <Route exact path="/admin">
+                        <Route exact path="/admin">
                             <Admin />
-                        </Route> */}
+                        </Route>
                         <Route exact path="/patient">
                             <Patient />
                         </Route>
