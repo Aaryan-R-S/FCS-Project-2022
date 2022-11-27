@@ -21,6 +21,7 @@ const Insurance = require('../models/Insurance');
 const Log = require('../models/Log');
 const { sendMail } = require('../utils/sendMail');
 const { pattern } = require('../utils/regex');
+const blockChain = require('..');
 
 require('dotenv').config();
 
@@ -489,6 +490,7 @@ router.post('/releaseDoc', upload, [
         const hex = sum.digest('hex');
 
         await Expert.findByIdAndUpdate(user.id, {signatures: [...user.signatures, hex]});
+        blockChain.addToBlockChain(hex);
         
         verdict = true;
         res.status(200).json({verdict, messages:["Success! You have released document successfully."], doc});
@@ -615,7 +617,11 @@ router.post('/verifyDoc', [
                 found = true;
             }
         }
-        
+        if(!found){
+            return res.status(200).json({verdict, messages:["Failure! Document verification failed."]});
+        }
+
+        found = blockChain.verify(hex);        
         if(!found){
             return res.status(200).json({verdict, messages:["Failure! Document verification failed."]});
         }
@@ -694,6 +700,7 @@ router.post('/signDoc', [
         const hex = sum.digest('hex');
 
         await Expert.findByIdAndUpdate(user.id, {signatures: [...user.signatures, hex]});
+        blockChain.addToBlockChain(hex);
         
         verdict = true;
         res.status(200).json({verdict, messages:["Success! Document signed successfully."]});

@@ -52,8 +52,8 @@ Others requirements
 ✔ Payment transaction loggings @done (11/26/2022, 1:49:07 PM)
 ✔ OTP (at least two) to validate highly sensitive transactions (OTP at time of payment + OTP at time of signing documents) @done (11/26/2022, 1:49:11 PM)
 ✔ XSS Input Sanitize + Output Encoding [https://www.section.io/engineering-education/how-to-prevent-cross-site-scripting-in-node-js/ | Backend] @done (11/26/2022, 8:36:16 PM)
-☐ CSRF Token [https://github.com/pcktuts/csrf-demo-express-js | https://stackoverflow.com/questions/27067251/where-to-store-jwt-in-browser-how-to-protect-against-csrf]
-☐ Blockchain verification [https://blog.logrocket.com/build-cryptocurrency-node-js-blockchain/]
+✔ CSRF Token [https://github.com/pcktuts/csrf-demo-express-js | https://stackoverflow.com/questions/27067251/where-to-store-jwt-in-browser-how-to-protect-against-csrf] @done (11/27/2022, 11:46:27 AM)
+✔ Blockchain verification [https://blog.logrocket.com/build-cryptocurrency-node-js-blockchain/] @done (11/27/2022, 12:38:00 PM)
 ☐ Add nginx configs for DOS attack [https://www.upguard.com/blog/10-tips-for-securing-your-nginx-deployment | https://stackoverflow.com/questions/10550558/nginx-tcp-websockets-timeout-keepalive-config]
 ☐ DOS Check [set numberofProxies]
 ☐ Highly sensitive transactions with virtual keyboard (For password at time of login - Frontend only)

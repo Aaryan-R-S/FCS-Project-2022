@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const connectToMongo = require('./db');
 const mongoSanitize = require('express-mongo-sanitize');
 const cors = require('cors');
+const Blockchain = require("./utils/blockchainVerification");
 require('dotenv').config();
 
 connectToMongo();
@@ -34,6 +35,10 @@ app.use(mongoSanitize({
   }),
 );
 
+let blockChain = new Blockchain();
+blockChain.init();
+module.exports = blockChain;
+
 app.get('/', (req, res) => res.send('Hello World!'));
 
 app.get('/ip', (req, res) => {
@@ -43,9 +48,14 @@ app.get('/ip', (req, res) => {
 	res.send(req.ip);
 })
 
+app.get('/blockchain', (req, res) => {
+	res.send(blockChain.blockchain);
+})
+
 app.use('/admin', require('./routes/admin'));
 app.use('/patient', require('./routes/patient'));
 app.use('/expert', require('./routes/expert'));
+
 
 app.listen(port, () => {
 	console.log(`Example app listening at http://localhost:${port}`);

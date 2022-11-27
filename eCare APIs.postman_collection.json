@@ -50,12 +50,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/admin/addAdmin",
-									"protocol": "http",
+									"raw": "{{devURL}}/admin/addAdmin",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"admin",
 										"addAdmin"
@@ -157,12 +155,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/admin/login",
-									"protocol": "http",
+									"raw": "{{devURL}}/admin/login",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"admin",
 										"login"
@@ -268,12 +264,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/admin/adminDetails",
-									"protocol": "http",
+									"raw": "{{devURL}}/admin/adminDetails",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"admin",
 										"adminDetails"
@@ -375,12 +369,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/admin/deleteAdmin",
-									"protocol": "http",
+									"raw": "{{devURL}}/admin/deleteAdmin",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"admin",
 										"deleteAdmin"
@@ -482,12 +474,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/admin/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/admin/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"admin",
 										"logout"
@@ -593,12 +583,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/admin/listPendingUsers",
-									"protocol": "http",
+									"raw": "{{devURL}}/admin/listPendingUsers",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"admin",
 										"listPendingUsers"
@@ -700,12 +688,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/admin/removeUser",
-									"protocol": "http",
+									"raw": "{{devURL}}/admin/removeUser",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"admin",
 										"removeUser"
@@ -807,12 +793,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/admin/approveUser",
-									"protocol": "http",
+									"raw": "{{devURL}}/admin/approveUser",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"admin",
 										"approveUser"
@@ -914,12 +898,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/admin/verifyUserAgain",
-									"protocol": "http",
+									"raw": "{{devURL}}/admin/verifyUserAgain",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"admin",
 										"verifyUserAgain"
@@ -1021,12 +1003,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/admin/listSusDocs",
-									"protocol": "http",
+									"raw": "{{devURL}}/admin/listSusDocs",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"admin",
 										"listSusDocs"
@@ -1128,12 +1108,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/admin/removeUser",
-									"protocol": "http",
+									"raw": "{{devURL}}/admin/removeUser",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"admin",
 										"removeUser"
@@ -1339,12 +1317,10 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/addPatient",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/addPatient",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"addPatient"
@@ -1446,12 +1422,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/login",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/login",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"login"
@@ -1523,7 +1497,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1557,12 +1531,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/patientDetails",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/patientDetails",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"patientDetails"
@@ -1664,12 +1636,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/admin/deleteAdmin",
-									"protocol": "http",
+									"raw": "{{devURL}}/admin/deleteAdmin",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"admin",
 										"deleteAdmin"
@@ -1771,12 +1741,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -1882,12 +1850,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/modifyDetails",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/modifyDetails",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"modifyDetails"
@@ -2005,12 +1971,10 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/verifyPatientAgain",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/verifyPatientAgain",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"verifyPatientAgain"
@@ -2112,12 +2076,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -2223,12 +2185,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -2334,12 +2294,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -2456,12 +2414,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -2567,12 +2523,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -2678,12 +2632,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -2789,12 +2741,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -2900,12 +2850,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -3011,12 +2959,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -3122,12 +3068,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -3233,12 +3177,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -3344,12 +3286,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -3461,12 +3401,10 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:3500/expert/verifyExpertAgain",
-									"protocol": "http",
+									"raw": "{{devURL}}/expert/verifyExpertAgain",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"expert",
 										"verifyExpertAgain"
@@ -3685,12 +3623,10 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/addPatient",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/addPatient",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"addPatient"
@@ -3758,7 +3694,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"licenseno\":\"3234567894\",\r\n    \"password\":\"qwerty7@PQRE4\"\r\n}",
+							"raw": "{\r\n    \"licenseno\":\"3234567891\",\r\n    \"password\":\"qwerty7@PQRE1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3792,12 +3728,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/expert/login",
-									"protocol": "http",
+									"raw": "{{devURL}}/expert/login",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"expert",
 										"login"
@@ -3903,12 +3837,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/expert/expertDetails",
-									"protocol": "http",
+									"raw": "{{devURL}}/expert/expertDetails",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"expert",
 										"expertDetails"
@@ -4010,12 +3942,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/expert/deleteExpert",
-									"protocol": "http",
+									"raw": "{{devURL}}/expert/deleteExpert",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"expert",
 										"deleteExpert"
@@ -4121,12 +4051,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/expert/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/expert/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"expert",
 										"logout"
@@ -4232,12 +4160,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/expert/modifyDetails",
-									"protocol": "http",
+									"raw": "{{devURL}}/expert/modifyDetails",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"expert",
 										"modifyDetails"
@@ -4355,12 +4281,10 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:3500/expert/verifyExpertAgain",
-									"protocol": "http",
+									"raw": "{{devURL}}/expert/verifyExpertAgain",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"expert",
 										"verifyExpertAgain"
@@ -4436,22 +4360,22 @@
 								},
 								{
 									"key": "licenseno",
-									"value": "3234567893",
+									"value": "3234567891",
 									"type": "text"
 								},
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/aarya/Desktop/sample/IIITD1.jpg"
+									"src": "/C:/Users/aarya/Desktop/sample/Photo.jpeg"
 								},
 								{
 									"key": "doctype",
-									"value": "bill",
+									"value": "testresults",
 									"type": "text"
 								},
 								{
 									"key": "otp",
-									"value": "85693378",
+									"value": "93283258",
 									"type": "text"
 								}
 							]
@@ -4489,12 +4413,10 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:3500/expert/verifyExpertAgain",
-									"protocol": "http",
+									"raw": "{{devURL}}/expert/verifyExpertAgain",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"expert",
 										"verifyExpertAgain"
@@ -4602,12 +4524,10 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:3500/expert/verifyExpertAgain",
-									"protocol": "http",
+									"raw": "{{devURL}}/expert/verifyExpertAgain",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"expert",
 										"verifyExpertAgain"
@@ -4715,12 +4635,10 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:3500/expert/verifyExpertAgain",
-									"protocol": "http",
+									"raw": "{{devURL}}/expert/verifyExpertAgain",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"expert",
 										"verifyExpertAgain"
@@ -4788,7 +4706,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"documentid\":\"public\\\\2234567891f6e7054bf91af5856983a9e21d50d5471668263237228.txt\"\r\n}",
+							"raw": "{\r\n    \"documentid\":\"public\\\\2234567891afb4390d5d250fc70cfa82277695f81d1669532631043.jpeg\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4828,12 +4746,10 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:3500/expert/verifyExpertAgain",
-									"protocol": "http",
+									"raw": "{{devURL}}/expert/verifyExpertAgain",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"expert",
 										"verifyExpertAgain"
@@ -4941,12 +4857,10 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:3500/expert/verifyExpertAgain",
-									"protocol": "http",
+									"raw": "{{devURL}}/expert/verifyExpertAgain",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"expert",
 										"verifyExpertAgain"
@@ -5054,12 +4968,10 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:3500/expert/verifyExpertAgain",
-									"protocol": "http",
+									"raw": "{{devURL}}/expert/verifyExpertAgain",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"expert",
 										"verifyExpertAgain"
@@ -5161,12 +5073,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -5272,12 +5182,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -5383,12 +5291,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -5494,12 +5400,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -5605,12 +5509,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -5716,12 +5618,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -5827,12 +5727,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -5938,12 +5836,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -6049,12 +5945,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3500/patient/logout",
-									"protocol": "http",
+									"raw": "{{devURL}}/patient/logout",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"patient",
 										"logout"
@@ -6166,12 +6060,10 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:3500/expert/verifyExpertAgain",
-									"protocol": "http",
+									"raw": "{{devURL}}/expert/verifyExpertAgain",
 									"host": [
-										"localhost"
+										"{{devURL}}"
 									],
-									"port": "3500",
 									"path": [
 										"expert",
 										"verifyExpertAgain"
@@ -6256,12 +6148,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3500/",
-							"protocol": "http",
+							"raw": "{{devURL}}/",
 							"host": [
-								"localhost"
+								"{{devURL}}"
 							],
-							"port": "3500",
 							"path": [
 								""
 							]
@@ -6343,12 +6233,95 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3500/ip",
-							"protocol": "http",
+							"raw": "{{devURL}}/ip",
 							"host": [
-								"localhost"
+								"{{devURL}}"
 							],
-							"port": "3500",
+							"path": [
+								"ip"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "RateLimit-Limit",
+							"value": "100"
+						},
+						{
+							"key": "RateLimit-Remaining",
+							"value": "98"
+						},
+						{
+							"key": "RateLimit-Reset",
+							"value": "889"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3-NjuuqcuiEK+sbXpVb8pZbjDEYzM\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 31 Oct 2022 14:37:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "::1"
+				}
+			]
+		},
+		{
+			"name": "Blockchain State",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{devURL}}/blockchain",
+					"host": [
+						"{{devURL}}"
+					],
+					"path": [
+						"blockchain"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Sample GET IP",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{devURL}}/ip",
+							"host": [
+								"{{devURL}}"
+							],
 							"path": [
 								"ip"
 							]
