@@ -50,7 +50,7 @@ export default function Login() {
 
             </div>
             <div className="col">
-            <div className="p-3 border bg-light">Response</div>
+            <div className="p-3 border bg-dark">Response</div>
             {JSON.stringify(response)}
             </div>
         </div>
