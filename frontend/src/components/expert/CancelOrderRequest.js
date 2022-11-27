@@ -1,22 +1,20 @@
 import React, {useState} from 'react'
+// import axios from "axios";
 
-
-export default function SendOTPMail() {
+export default function CancelOrderRequest() {
 
     const [response, setresponse] = useState()
 
     const submit = async () =>{
         var dict = {};
-        dict.licenseno=document.getElementById("licenseno").value
+        dict.orderid=document.getElementById("orderid").value
+        // console.log(dict)
 
-        const formData = new FormData();
-        formData.append("licenseno", dict.licenseno);
-       
-        //Write api here (data needed)
-        const res = ""
-        
+        // Write API here (data required)
+        let res
 
-        console.log(res)
+        res = res.data;
+        // console.log(res)
         setresponse(res)
     }
 
@@ -31,10 +29,10 @@ export default function SendOTPMail() {
             
 
                 <div className="mb-3">
-                <label className="form-label">License No</label>
-                <input type="number" className="form-control" id="licenseno"/>
+                    <label className="form-label">Order ID</label>
+                    <input type="text" className="form-control" id="orderid"/>
                 </div>
-                <button className="btn btn-primary" onClick={submit}>Send OTP Mail</button>
+                <button className="btn btn-primary" onClick={submit}>Cancel</button>
 
             </div>
             <div className="col">
