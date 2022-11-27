@@ -1,6 +1,4 @@
-import React, {useState} from 'react'
-// import axios from "axios";
-
+import React, {useState} from 'react';
 
 export default function PatientDetails() {
 
@@ -8,7 +6,9 @@ export default function PatientDetails() {
 
     const submit = async () =>{
 
-        const res=await fetch('http://localhost:3500/patient/patientDetails', {
+        let url =  (process.env.REACT_APP_NODE_ENV === "prod"? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_DEV_URL)
+
+        const res=await fetch(`${url}/patient/patientDetails`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true,

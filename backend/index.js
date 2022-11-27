@@ -14,7 +14,7 @@ const port = process.env.PORT || 3500; // Get environment variable PORT from pro
 const numberOfProxies = (process.env.NODE_ENV === "prod"? process.env.NUMBEROFPROXIES : 1);
 const corsOptions = {
 	credentials: true,
-	origin: 'http://localhost:8080'
+	origin: (process.env.NODE_ENV === "prod"? process.env.ORIGIN_PROD : process.env.ORIGIN_DEV)
 }
 
 app.set('trust proxy', numberOfProxies)
