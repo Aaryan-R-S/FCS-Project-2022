@@ -8,7 +8,8 @@ const Order = require('../models/Order');
 const OTP = require('../models/OTP');
 const checkAuth = require('../middlewares/authorize');
 const upload = require('../utils/uploadFile');
-const uploads = require('../utils/uploadFiles');
+const uploadi = require('../utils/uploadFileImage');
+// const uploads = require('../utils/uploadFiles');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -28,7 +29,7 @@ require('dotenv').config();
 const JWT_SECRET = process.env.JWT_SECRET;
 
 // ROUTE 1: create an expert using: POST "/expert/addExpert"; No login required
-router.post('/addExpert', uploads, [
+router.post('/addExpert', upload, [
     body('licenseno', 'Enter a valid licenseno of length 10 with all numeric characters.').isLength({min:10, max:10}).isNumeric(),
     body('password', 'Enter a strong password of minimum length 8 with atleast one lowercase, one uppercase, one number and one symbol or special character.').isStrongPassword({
         minLength: 8,
@@ -55,13 +56,12 @@ router.post('/addExpert', uploads, [
 ], async (req, res)=>{
 
     let verdict = false;
-
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ verdict, messages: errors.array() });
     }
     
-    if(req.files===undefined){
+    if(req.file===undefined){
         return res.status(400).json({ verdict, messages: ["Bad Request! Only .jpg/.jpeg/.png/pdf/.txt/.doc/.docx files are allowed with size less than a mb."] });
     }
 
@@ -79,23 +79,24 @@ router.post('/addExpert', uploads, [
         await Uploadeddoc.create({
             healthid: req.body.licenseno,
             licensenos: req.body.licensenos,
-            documentid: req.files[0].path,
+            documentid: req.file.path,
+            // documentid: req.files[0].path,
             doctype: req.body.doctype,
             suspicious: "no"
         })
-        
+
         let imgPathArr = []
-        for (let idx = 1; idx < req.files.length; idx++) {
-            const pth = req.files[idx].path;
-            imgPathArr.push(pth);
-            await Uploadeddoc.create({
-                healthid: req.body.licenseno,
-                licensenos: req.body.licensenos,
-                documentid: pth,
-                doctype: 'view',
-                suspicious: "no"
-            })
-        }
+        // for (let idx = 1; idx < req.files.length; idx++) {
+        //     const pth = req.files[idx].path;
+        //     imgPathArr.push(pth);
+        //     await Uploadeddoc.create({
+        //         healthid: req.body.licenseno,
+        //         licensenos: req.body.licensenos,
+        //         documentid: pth,
+        //         doctype: 'view',
+        //         suspicious: "no"
+        //     })
+        // }
 
         // Handle errors and use the generated key pair.
         const salt = await bcrypt.genSalt(10);
@@ -111,14 +112,14 @@ router.post('/addExpert', uploads, [
             dob: req.body.dob,
             location: req.body.location,
             images: imgPathArr,
-            documentid: req.files[0].path,
+            documentid: req.file.path,
             description: req.body.description,
             email: req.body.email,
             phoneno: req.body.phoneno,
             verificationstatus: "pending",
             wallet: 1000
         })
-        
+
         const data = {
             id: user.id
         }
@@ -134,7 +135,56 @@ router.post('/addExpert', uploads, [
 
     }
     catch(error){
-        // console.error(error.message);
+        console.error(error.message);
+        res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
+    }
+})
+
+// ROUTE 1.0: upload image for added expert using: POST "/expert/uploadImage"; Login required
+router.post('/uploadImage', uploadi, [
+    body('licenseno', 'Enter a valid licenseno of length 10 with all numeric characters.').isLength({min:10, max:10}).isNumeric()
+], async (req, res)=>{
+
+    let verdict = false;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ verdict, messages: errors.array() });
+    }
+    
+    if(req.file===undefined){
+        return res.status(400).json({ verdict, messages: ["Bad Request! Only .jpg/.jpeg/.png files are allowed with size less than a mb."] });
+    }
+
+    try{
+        // Check with the user with this username exist already
+        let user = await Expert.findOne({licenseno: req.body.licenseno});
+        if (!user){ 
+            await unlinkAsync(req.file.path);
+            return res.status(404).json({verdict, messages:["Not found! User not found."]});
+        }
+        if(user.images.length>=5){
+            await unlinkAsync(req.file.path);
+            return res.status(400).json({verdict, messages:["Bad Request! Exceeded upper limit of five images."]});
+        }
+
+        await Uploadeddoc.create({
+            healthid: req.body.licenseno,
+            licensenos: req.body.licensenos,
+            documentid: req.file.path,
+            // documentid: req.files[0].path,
+            doctype: "view",
+            suspicious: "no"
+        })
+
+        user.images = [...user.images, req.file.path];
+        user.save();
+
+        verdict = true;
+        res.status(200).json({verdict, messages:["Success! Image uploaded successfully."]});
+
+    }
+    catch(error){
+        console.error(error.message);
         res.status(500).json({verdict, messages:["Internal server error! Please try again after sometime."]});
     }
 })
@@ -852,7 +902,7 @@ router.post('/billOrderRequest', [
             documentid: req.body.documentid
         });
         
-        if(!doc || !doc.licensenos.includes(user.licenseno) || doc.doctype!='bill'){
+        if(!doc || !doc.licensenos.includes(user.licenseno) || doc.doctype!='bill' || order.status != "requested"){
             return res.status(403).json({verdict, messages:["Bad request! Cannot attach the doc, method not allowed."]});
         }
 
@@ -921,9 +971,9 @@ router.post('/approveInsuranceRequest', [
         if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot appprove insurance request, you are not verified yet."]});}
         if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot appprove insurance request, you are banned."]});}
 
-        if(user.who!='insurancefirm'){ return res.status(403).json({verdict, messages:["Bad request! Method not allowed."]});}
-
         let insurance = await Insurance.findById(req.body.insuranceid);
+        
+        if(user.who!='insurancefirm' || insurance.status!="pending"){ return res.status(403).json({verdict, messages:["Bad request! Method not allowed."]});}
         
         if(!insurance || insurance.licenseno != user.licenseno){
             return res.status(403).json({verdict, messages:["Bad request! Cannot approve insurance request, you have no access to it."]});
@@ -971,9 +1021,9 @@ router.post('/cancelInsuranceRequest', [
         if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot reject insurance request, you are not verified yet."]});}
         if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot reject insurance request, you are banned."]});}
 
-        if(user.who!='insurancefirm'){ return res.status(403).json({verdict, messages:["Bad request! Method not allowed."]});}
-
         let insurance = await Insurance.findById(req.body.insuranceid);
+        
+        if(user.who!='insurancefirm' || insurance.status!="pending"){ return res.status(403).json({verdict, messages:["Bad request! Method not allowed."]});}
         
         if(!insurance || insurance.licenseno != user.licenseno){
             return res.status(403).json({verdict, messages:["Bad request! Cannot reject insurance request, you have no access to it."]});
@@ -1045,9 +1095,9 @@ router.post('/approveInsuranceClaim', [
         if(user.verificationstatus=='failure' || user.verificationstatus=='pending'){ return res.status(403).json({verdict, messages:["Bad request! Cannot appprove insurance claim, you are not verified yet."]});}
         if(user.verificationstatus=='banned'){ return res.status(403).json({verdict, messages:["Bad request! Cannot appprove insurance claim, you are banned."]});}
 
-        if(user.who!='insurancefirm'){ return res.status(403).json({verdict, messages:["Bad request! Method not allowed."]});}
-
         let claim = await Claim.findById(req.body.claimid);
+        
+        if(user.who!='insurancefirm' || claim.status!="pending"){ return res.status(403).json({verdict, messages:["Bad request! Method not allowed."]});}
         
         if(!claim || claim.licenseno != user.licenseno){
             return res.status(403).json({verdict, messages:["Bad request! Cannot approve insurance claim, you have no access to it."]});
@@ -1154,7 +1204,7 @@ router.post('/sendOTPMail', [
         });
         
         verdict = true;
-        res.status(200).json({verdict, messages:["Success! OTP for the transaction has been mailed successfully."]});
+        res.status(200).json({verdict, messages:["Success! OTP for the signing document has been mailed successfully."]});
     }
     catch(error){
         // console.error(error.message);

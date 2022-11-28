@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 
+import axios from "axios";
 
 export default function VerifyPatientAgain() {
 
@@ -15,14 +16,25 @@ export default function VerifyPatientAgain() {
         // console.log(document.getElementById("file").files[0])
         formData.append("file", document.getElementById("file").files[0])
 
-        //Write api here (data needed)
-        let res
+        let url =  (process.env.REACT_APP_NODE_ENV === "prod"? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_DEV_URL);
+        axios({
+            method: "post",
+            url: url+"/patient/verifyPatientAgain",
+            data: formData,
+            withCredentials: true,
+            credentials: 'include',
+            headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then(function (response) {
+        //   console.log(response);
+          setresponse(response.data.messages);
+        })
+        .catch(function (error) {
+        //   console.log(error.response.data.messages);
+          setresponse(error.response.data.messages);
+        });
 
-        // console.log(res)
-        setresponse(res)
     }
-
-
 
     return (
     <>
@@ -43,8 +55,8 @@ export default function VerifyPatientAgain() {
 
             </div>
             <div className="col">
-            <div className="p-3 border bg-dark">Response</div>
-            {JSON.stringify(response)}
+                <div className="p-3 border bg-dark">Response</div>
+                {JSON.stringify(response)}
             </div>
         </div>
         </div>

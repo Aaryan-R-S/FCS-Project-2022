@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import AddExpert from './expert/AddExpert'
+import UploadImage from './expert/UploadImage'
 import AddMedicine from './expert/AddMedicine'
 import ApproveInsuranceClaim from './expert/ApproveInsuranceClaim'
 import ApproveInsuranceRequest from './expert/ApproveInsuranceRequest'
@@ -32,6 +33,9 @@ export default function Expert() {
 
     const addExpert= () =>{
         setcomponent(<AddExpert/>)
+    }
+    const uploadImage= () =>{
+        setcomponent(<UploadImage/>)
     }
     const login= () =>{
         setcomponent(<Login/>)
@@ -107,11 +111,14 @@ export default function Expert() {
                 Options
             </a>
             <ul className="dropdown-menu">
-                <li><button className="dropdown-item" onClick={addExpert}>Add Expert</button></li>
                 <li><button className="dropdown-item" onClick={login}>Login</button></li>
+                <li><button className="dropdown-item" onClick={addExpert}>Add Expert</button></li>
+                <li><button className="dropdown-item" onClick={uploadImage}>Upload Image</button></li>
                 <li><button className="dropdown-item" onClick={expertDetails}>Expert Details</button></li>
+                <li><button className="dropdown-item" onClick={deleteExpert}>Delete Expert</button></li>
+                <li><button className="dropdown-item" onClick={logout}>Logout</button></li>
                 <li><button className="dropdown-item" onClick={modifyDetails}>Modify Details</button></li>
-                <li><button className="dropdown-item" onClick={verifyExpertAgain}>Verify Expert</button></li>
+                <li><button className="dropdown-item" onClick={verifyExpertAgain}>Verify Account Again</button></li>
                 <li><button className="dropdown-item" onClick={releaseDoc}>Release Document</button></li>
                 <li><button className="dropdown-item" onClick={reportSusDoc}>Report Sus Document</button></li>
                 <li><button className="dropdown-item" onClick={listSharedDoc}>List Shared Documents</button></li>
@@ -128,8 +135,6 @@ export default function Expert() {
                 <li><button className="dropdown-item" onClick={approveInsuranceClaim}>Approve Insurance Claim</button></li>
                 <li><button className="dropdown-item" onClick={rejectInsuranceClaim}>Reject Insurance Claim</button></li>
                 <li><button className="dropdown-item" onClick={sendOTPMail}>Send OTP Mail</button></li>
-                <li><button className="dropdown-item" onClick={logout}>Logout</button></li>
-                <li><button className="dropdown-item" onClick={deleteExpert}>Delete Expert</button></li>
                 {/* <li><a className="dropdown-item disabled" href="/">Something else here</a></li> */}
 
             </ul>

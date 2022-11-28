@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 
+import axios from "axios";
 
 export default function SendOTPMail() {
 
@@ -9,15 +10,23 @@ export default function SendOTPMail() {
         var dict = {};
         dict.licenseno=document.getElementById("licenseno").value
 
-        const formData = new FormData();
-        formData.append("licenseno", dict.licenseno);
-       
-        //Write api here (data needed)
-        const res = ""
-        
-
-        console.log(res)
-        setresponse(res)
+        let url =  (process.env.REACT_APP_NODE_ENV === "prod"? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_DEV_URL);
+        axios({
+            method: "post",
+            url: url+"/patient/sendOTPMail",
+            data: JSON.stringify(dict),
+            withCredentials: true,
+            credentials: 'include',
+            headers: { "Content-Type": "application/json" },
+        })
+        .then(function (response) {
+        //   console.log(response);
+          setresponse(response.data.messages);
+        })
+        .catch(function (error) {
+        //   console.log(error.response.data.messages);
+          setresponse(error.response.data.messages);
+        });
     }
 
 

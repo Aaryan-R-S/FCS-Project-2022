@@ -2,29 +2,31 @@ import React, {useState} from 'react'
 
 import axios from "axios";
 
-export default function AddMedicine() {
+export default function ReleaseDoc() {
 
     const [response, setresponse] = useState()
 
     const submit = async () =>{
         var dict = {};
-        dict.name=document.getElementById("name").value
         dict.licenseno=document.getElementById("licenseno").value
-        dict.price=document.getElementById("price").value
-        dict.quantity=document.getElementById("quantity").value
+        dict.file=document.getElementById("file").files[0].name
 
-        let url =  (process.env.REACT_APP_NODE_ENV === "prod"? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_DEV_URL);
+        const formData = new FormData();
+        formData.append("licenseno", dict.licenseno);
+        formData.append("file", document.getElementById("file").files[0])
+
+        let url = (process.env.REACT_APP_NODE_ENV === "prod"? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_DEV_URL);
         axios({
             method: "post",
-            url: url+"/expert/addMedicine",
-            data: JSON.stringify(dict),
+            url: url+"/expert/uploadImage",
+            data: formData,
             withCredentials: true,
             credentials: 'include',
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "multipart/form-data" },
         })
         .then(function (response) {
         //   console.log(response);
-          setresponse({messages: response.data.messages});
+          setresponse(response.data.messages);
         })
         .catch(function (error) {
         //   console.log(error.response.data.messages);
@@ -32,33 +34,21 @@ export default function AddMedicine() {
         });
     }
 
-
-
     return (
     <>
-
         <div className="container px-4 text-center">
         <div className="row gx-5">
             <div className="col">
             
-
-                <div className="mb-3">
-                <label className="form-label">Name</label>
-                <input type="text" className="form-control" id="name"/>
-                </div>
                 <div className="mb-3">
                     <label className="form-label">License No</label>
                     <input type="number" className="form-control" id="licenseno"/>
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">Price</label>
-                    <input type="number" className="form-control" id="price"/>
+                    <label className="form-label">Attach Image</label>
+                    <input type="file" className="form-control" id="file"/>
                 </div>
-                <div className="mb-3">
-                <label className="form-label">Quantity</label>
-                <input type="number" className="form-control" id="quantity"/>
-                </div>
-                <button className="btn btn-primary" onClick={submit}>Add</button>
+                <button className="btn btn-primary" onClick={submit}>Upload Image</button>
 
             </div>
             <div className="col">

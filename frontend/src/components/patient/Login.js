@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+
 import axios from "axios";
 
 import Keyboard from 'react-simple-keyboard';
@@ -8,7 +9,7 @@ export default function Login() {
 
     const [response, setresponse] = useState();
 
-    const [password, setPassword] = useState("qwerty7@PQRH1");
+    const [password, setPassword] = useState("");
     const [layout, setLayout] = useState("default");
     
     const onChange = (input) => {
@@ -64,7 +65,7 @@ export default function Login() {
 
                 <div className="mb-3">
                     <label className="form-label">Health id</label>
-                    <input value="2234567891" type="number" className="form-control" id="healthid"/>
+                    <input type="number" className="form-control" id="healthid"/>
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Password</label>

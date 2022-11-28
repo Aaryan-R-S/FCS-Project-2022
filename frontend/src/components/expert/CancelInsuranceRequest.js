@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-// import axios from "axios";
+
+import axios from "axios";
 
 export default function CancelInsuranceRequest() {
 
@@ -7,15 +8,24 @@ export default function CancelInsuranceRequest() {
 
     const submit = async () =>{
         var dict = {};
-        dict.insuranceid=document.getElementById("insuranceid").value
-        // console.log(dict)
-
-        // Write API here (data required)
-        let res
-
-        res = res.data;
-        // console.log(res)
-        setresponse(res)
+        dict.insuranceid = document.getElementById("insuranceid").value;
+        let url =  (process.env.REACT_APP_NODE_ENV === "prod"? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_DEV_URL);
+        axios({
+            method: "post",
+            url: url+"/expert/cancelInsuranceRequest",
+            data: JSON.stringify(dict),
+            withCredentials: true,
+            credentials: 'include',
+            headers: { "Content-Type": "application/json" },
+        })
+        .then(function (response) {
+        //   console.log(response);
+          setresponse({messages: response.data.messages, orders: response.data.orders});
+        })
+        .catch(function (error) {
+        //   console.log(error.response.data.messages);
+          setresponse(error.response.data.messages);
+        });
     }
 
     return (

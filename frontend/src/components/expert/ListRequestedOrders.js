@@ -1,21 +1,31 @@
 import React, {useState} from 'react'
 
+import axios from "axios";
+
 export default function ListRequestedOrders() {
 
     const [response, setresponse] = useState()
 
     const submit = async () =>{
-        // var dict = {};
-        var res
-
-        // write api here (no input)
-
-
-        // console.log(res)
-        setresponse(res)
+        let dict = {};
+        let url =  (process.env.REACT_APP_NODE_ENV === "prod"? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_DEV_URL);
+        axios({
+            method: "post",
+            url: url+"/expert/listRequestedOrders",
+            data: JSON.stringify(dict),
+            withCredentials: true,
+            credentials: 'include',
+            headers: { "Content-Type": "application/json" },
+        })
+        .then(function (response) {
+        //   console.log(response);
+          setresponse({messages: response.data.messages, orders: response.data.orders});
+        })
+        .catch(function (error) {
+        //   console.log(error.response.data.messages);
+          setresponse(error.response.data.messages);
+        });
     }
-
-
 
     return (
     <>

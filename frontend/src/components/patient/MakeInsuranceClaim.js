@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 
+import axios from "axios";
 
 export default function MakeInsuranceClaim() {
 
@@ -10,19 +11,24 @@ export default function MakeInsuranceClaim() {
         dict.licenseno=document.getElementById("licenseno").value
         dict.documentid=document.getElementById("documentid").value
 
-        const formData = new FormData();
-        formData.append("licenseno", dict.licenseno);
-        formData.append("documentid", dict.documentid);
-       
-        //Write api here (data needed)
-        const res = ""
-        
-
-        console.log(res)
-        setresponse(res)
+        let url =  (process.env.REACT_APP_NODE_ENV === "prod"? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_DEV_URL);
+        axios({
+            method: "post",
+            url: url+"/patient/makeInsuranceClaim",
+            data: JSON.stringify(dict),
+            withCredentials: true,
+            credentials: 'include',
+            headers: { "Content-Type": "application/json" },
+        })
+        .then(function (response) {
+        //   console.log(response);
+          setresponse(response.data.messages);
+        })
+        .catch(function (error) {
+        //   console.log(error.response.data.messages);
+          setresponse(error.response.data.messages);
+        });
     }
-
-
 
     return (
     <>
@@ -31,9 +37,8 @@ export default function MakeInsuranceClaim() {
         <div className="row gx-5">
             <div className="col">
             
-
                 <div className="mb-3">
-                <label className="form-label">License No</label>
+                <label className="form-label">License No of Insurance Firm</label>
                 <input type="number" className="form-control" id="licenseno"/>
                 </div>
                 <div className="mb-3">
@@ -44,8 +49,8 @@ export default function MakeInsuranceClaim() {
 
             </div>
             <div className="col">
-            <div className="p-3 border bg-dark">Response</div>
-            {JSON.stringify(response)}
+                <div className="p-3 border bg-dark">Response</div>
+                {JSON.stringify(response)}
             </div>
         </div>
         </div>

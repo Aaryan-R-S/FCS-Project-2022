@@ -1,5 +1,9 @@
 import React, {useState} from 'react'
-// import axios from "axios";
+
+import axios from "axios";
+
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 export default function SignDoc() {
 
@@ -8,17 +12,33 @@ export default function SignDoc() {
     const submit = async () =>{
         var dict = {};
         dict.documentid=document.getElementById("documentid").value
+        dict.otp=document.getElementById("otp").value
         // console.log(dict)
 
-        // Write API here (data required)
-        let res
-
-        res = res.data;
-        // console.log(res)
-        setresponse(res)
+        let url =  (process.env.REACT_APP_NODE_ENV === "prod"? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_DEV_URL);
+        axios({
+            method: "post",
+            url: url+"/expert/signDoc",
+            data: JSON.stringify(dict),
+            withCredentials: true,
+            credentials: 'include',
+            headers: { "Content-Type": "application/json" },
+        })
+        .then(function (response) {
+        //   console.log(response);
+          setresponse(response.data.messages);
+        })
+        .catch(function (error) {
+        //   console.log(error.response.data.messages);
+          setresponse(error.response.data.messages);
+        });
     }
 
-
+    const renderTooltip1 = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+         Get it from 'Options' then 'Send OTP Mail'
+        </Tooltip>
+    );
 
     return (
     <>
@@ -32,6 +52,12 @@ export default function SignDoc() {
                     <label className="form-label">Document ID</label>
                     <input type="text" className="form-control" id="documentid"/>
                 </div>
+                <OverlayTrigger placement="right" delay={{ show: 250, hide: 400 }} overlay={renderTooltip1}>
+                    <div className="mb-3">
+                        <label className="form-label">OTP</label>
+                        <input type="number" className="form-control" id="otp"/>
+                    </div>
+                </OverlayTrigger>
                 <button className="btn btn-primary" onClick={submit}>Sign</button>
 
             </div>

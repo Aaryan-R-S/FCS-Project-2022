@@ -451,6 +451,9 @@ router.post('/deleteDoc', [
         let doc = await Uploadeddoc.findOneAndDelete({
             documentid: req.body.documentid
         });
+        
+        if(!doc){ return res.status(404).json({verdict, messages:["Not found! Doc not found."]});}
+
         await unlinkAsync(doc.documentid);
         
         verdict = true;
@@ -512,15 +515,15 @@ router.post('/uploadDoc', upload, [
             ]
         }).select(["-suspicious"]);
         
-        let limit_exceeded = (docs.length > 2 ? true : false);
+        let limit_exceeded = (docs.length > 10 ? true : false);
 
         if(limit_exceeded){
             await Patient.findByIdAndUpdate(user.id, {verificationstatus: 'banned'});
-            return res.status(200).json({verdict, messages:["Failure! You have exceeded the upper limit of 2 file uploads, so you are banned now."]});
+            return res.status(200).json({verdict, messages:["Failure! You have exceeded the upper limit of 10 file uploads, so you are banned now."]});
         }
 
         verdict = true;
-        res.status(200).json({verdict, messages:["Success! You have uploaded the doc successfully."], uploadsLeft:2-docs.length});
+        res.status(200).json({verdict, messages:["Success! You have uploaded the doc successfully."], uploadsLeft:10-docs.length});
     }
     catch(error){
         // console.error(error.message);
@@ -549,11 +552,13 @@ router.post('/shareDoc', [
 
         let expert = Expert.find({licenseno: req.body.licenseno})
         if(!expert){ return res.status(404).json({verdict, messages:["Not found! User not found."]});}
-
+        
         let doc = await Uploadeddoc.findOneAndUpdate({
             documentid: req.body.documentid
         }, { $push: { licensenos: req.body.licenseno } });
         
+        if(!doc){ return res.status(404).json({verdict, messages:["Not found! Doc not found."]});}
+
         verdict = true;
         res.status(200).json({verdict, messages:["Success! Document shared successfully."]});
     }

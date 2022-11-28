@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import '../App.css'
 import Login from './patient/Login'
 import ModifyDetails from './patient/ModifyDetails'
 import AddPatient from './patient/AddPatient'
@@ -105,7 +104,7 @@ export default function Patient() {
                 <li><button className="dropdown-item" onClick={deletePatient}>Delete Account</button></li>
                 <li><button className="dropdown-item" onClick={logout}>Logout</button></li>
                 <li><button className="dropdown-item" onClick={modifyDetails}>Modify Details</button></li>
-                <li><button className="dropdown-item" onClick={verifyPatientAgain}>Verify Account</button></li>
+                <li><button className="dropdown-item" onClick={verifyPatientAgain}>Verify Account Again</button></li>
                 <li><button className="dropdown-item" onClick={filterExperts}>Filter Expert</button></li>
                 <li><button className="dropdown-item" onClick={listDocs}>List Documents</button></li>
                 <li><button className="dropdown-item" onClick={deleteDoc}>Delete Document</button></li>

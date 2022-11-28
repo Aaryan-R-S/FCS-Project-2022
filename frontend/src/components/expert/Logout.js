@@ -1,20 +1,34 @@
 import React, {useState} from 'react'
 
+import axios from "axios";
+
 export default function Logout() {
 
     const [response, setresponse] = useState()
 
     const submit = async () =>{
-        // var dict = {};
-        var res
-
-        // write api here (no input)
-
-
-        // console.log(res)
-        setresponse(res)
+        let url =  (process.env.REACT_APP_NODE_ENV === "prod"? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_DEV_URL)
+        let a = axios.create({
+            baseURL: url,
+        });
+        a.post(
+            "/expert/logout",
+            JSON.stringify({}),
+            {
+                withCredentials: true,
+                credentials: 'include',
+                headers: { "Content-Type": "application/json" },
+            }
+            )
+            .then(function (response) {
+            //   console.log(response);
+              setresponse(response.data.messages);
+            })
+            .catch(function (error) {
+            //   console.log(error.response.data.messages);
+              setresponse(error.response.data.messages);
+        });
     }
-
 
 
     return (

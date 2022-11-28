@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 
+import axios from "axios";
 
 export default function VerifyExpertAgain() {
 
@@ -14,11 +15,24 @@ export default function VerifyExpertAgain() {
         formData.append("licenseno", dict.licenseno);
         formData.append("file", document.getElementById("file").files[0])
 
-        //Write api here (data needed)
-        let res
 
-        // console.log(res)
-        setresponse(res)
+        let url =  (process.env.REACT_APP_NODE_ENV === "prod"? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_DEV_URL);
+        axios({
+            method: "post",
+            url: url+"/expert/verifyExpertAgain",
+            data: formData,
+            withCredentials: true,
+            credentials: 'include',
+            headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then(function (response) {
+        //   console.log(response);
+          setresponse(response.data.messages);
+        })
+        .catch(function (error) {
+        //   console.log(error.response.data.messages);
+          setresponse(error.response.data.messages);
+        });
     }
 
 
