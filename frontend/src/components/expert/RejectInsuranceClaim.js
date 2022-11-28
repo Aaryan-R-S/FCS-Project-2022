@@ -1,22 +1,20 @@
 import React, {useState} from 'react'
+// import axios from "axios";
 
-
-export default function SendOTPMail() {
+export default function RejectInsuranceClaim() {
 
     const [response, setresponse] = useState()
 
     const submit = async () =>{
         var dict = {};
-        dict.licenseno=document.getElementById("licenseno").value
+        dict.claimid=document.getElementById("claimid").value
+        // console.log(dict)
 
-        const formData = new FormData();
-        formData.append("licenseno", dict.licenseno);
-       
-        //Write api here (data needed)
-        const res = ""
-        
+        // Write API here (data required)
+        let res
 
-        console.log(res)
+        res = res.data;
+        // console.log(res)
         setresponse(res)
     }
 
@@ -29,12 +27,11 @@ export default function SendOTPMail() {
         <div className="row gx-5">
             <div className="col">
             
-
                 <div className="mb-3">
-                <label className="form-label">License No</label>
-                <input type="number" className="form-control" id="licenseno"/>
+                    <label className="form-label">Claim ID</label>
+                    <input type="text" className="form-control" id="claimid"/>
                 </div>
-                <button className="btn btn-primary" onClick={submit}>Send OTP Mail</button>
+                <button className="btn btn-primary" onClick={submit}>Reject Claim</button>
 
             </div>
             <div className="col">

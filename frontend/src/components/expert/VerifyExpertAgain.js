@@ -1,22 +1,23 @@
 import React, {useState} from 'react'
 
 
-export default function SendOTPMail() {
+export default function VerifyExpertAgain() {
 
     const [response, setresponse] = useState()
 
     const submit = async () =>{
         var dict = {};
         dict.licenseno=document.getElementById("licenseno").value
+        dict.file=document.getElementById("file").files[0].name
 
         const formData = new FormData();
         formData.append("licenseno", dict.licenseno);
-       
-        //Write api here (data needed)
-        const res = ""
-        
+        formData.append("file", document.getElementById("file").files[0])
 
-        console.log(res)
+        //Write api here (data needed)
+        let res
+
+        // console.log(res)
         setresponse(res)
     }
 
@@ -29,12 +30,15 @@ export default function SendOTPMail() {
         <div className="row gx-5">
             <div className="col">
             
-
                 <div className="mb-3">
-                <label className="form-label">License No</label>
+                <label className="form-label">License No.</label>
                 <input type="number" className="form-control" id="licenseno"/>
                 </div>
-                <button className="btn btn-primary" onClick={submit}>Send OTP Mail</button>
+                <div className="mb-3">
+                    <label className="form-label">Document</label>
+                    <input type="file" className="form-control" id="file"/>
+                </div>
+                <button className="btn btn-primary" onClick={submit}>Verify</button>
 
             </div>
             <div className="col">

@@ -1,5 +1,28 @@
 import React, {useState} from 'react'
+import AddExpert from './expert/AddExpert'
+import AddMedicine from './expert/AddMedicine'
+import ApproveInsuranceClaim from './expert/ApproveInsuranceClaim'
+import ApproveInsuranceRequest from './expert/ApproveInsuranceRequest'
+import BillOrderRequest from './expert/BillOrderRequest'
+import CancelInsuranceRequest from './expert/CancelInsuranceRequest'
+import CancelOrderRequest from './expert/CancelOrderRequest'
+import DeleteExpert from './expert/DeleteExpert'
+import ExpertDetails from './expert/ExpertDetails'
 import ExpertHome from './expert/ExpertHome'
+import ListInsuranceClaims from './expert/ListInsuranceClaims'
+import ListRequestedInsuranceApplication from './expert/ListRequestedInsuranceApplication'
+import ListRequestedOrders from './expert/ListRequestedOrders'
+import ListSharedDoc from './expert/ListSharedDoc'
+import Login from './expert/Login'
+import Logout from './expert/Logout'
+import ModifyDetails from './expert/ModifyDetails'
+import RejectInsuranceClaim from './expert/RejectInsuranceClaim'
+import ReleaseDoc from './expert/ReleaseDoc'
+import ReportSusDoc from './expert/ReportSusDoc'
+import SendOTPMail from './expert/SendOTPMail'
+import SignDoc from './expert/SignDoc'
+import VerifyDoc from './expert/VerifyDoc'
+import VerifyExpertAgain from './expert/VerifyExpertAgain'
 
 export default function Expert() {
 
@@ -8,73 +31,73 @@ export default function Expert() {
     //useState =>text is a variable which have a value within useState and when the text is updated via setText function
 
     const addExpert= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<AddExpert/>)
     }
     const login= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<Login/>)
     }
     const expertDetails= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<ExpertDetails/>)
     }
     const deleteExpert= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<DeleteExpert/>)
     }
     const logout= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<Logout/>)
     }
     const modifyDetails= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<ModifyDetails/>)
     }
     const verifyExpertAgain= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<VerifyExpertAgain/>)
     }
     const releaseDoc= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<ReleaseDoc/>)
     }
     const reportSusDoc= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<ReportSusDoc/>)
     }
     const listSharedDoc= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<ListSharedDoc/>)
     }
     const verifyDoc= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<VerifyDoc/>)
     }
     const signDoc= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<SignDoc/>)
     }
     const addMedicine= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<AddMedicine/>)
     }
     const listRequestedOrders= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<ListRequestedOrders/>)
     }
     const cancelOrderRequest= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<CancelOrderRequest/>)
     }
     const billOrderRequest= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<BillOrderRequest/>)
     }
     const listRequestedInsuranceApplication= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<ListRequestedInsuranceApplication/>)
     }
     const approveInsuranceRequest= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<ApproveInsuranceRequest/>)
     }
     const cancelInsuranceRequest= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<CancelInsuranceRequest/>)
     }
     const listInsuranceClaims= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<ListInsuranceClaims/>)
     }
     const approveInsuranceClaim= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<ApproveInsuranceClaim/>)
     }
     const rejectInsuranceClaim= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<RejectInsuranceClaim/>)
     }
     const sendOTPMail= () =>{
-        setcomponent(<ExpertHome/>)
+        setcomponent(<SendOTPMail/>)
     }
 
     return (
