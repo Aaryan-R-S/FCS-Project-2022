@@ -252,7 +252,7 @@ router.post('/approveUser', [
     try{
         const userId = req.userId;
         let user = await Admin.findById(userId);
-        if(!user){ return res.status(401).json({verdict, messages:["Authorization failed! You are not authorized to remove a user."]});}
+        if(!user){ return res.status(401).json({verdict, messages:["Authorization failed! You are not authorized to approve a user."]});}
 
         let user1 = await Patient.findOne({healthid: req.body.id});
         let user2 = await Expert.findOne({licenseno: req.body.id});
@@ -284,7 +284,7 @@ router.post('/verifyUserAgain', [
     try{
         const userId = req.userId;
         let user = await Admin.findById(userId);
-        if(!user){ return res.status(401).json({verdict, messages:["Authorization failed! You are not authorized to remove a user."]});}
+        if(!user){ return res.status(401).json({verdict, messages:["Authorization failed! You are not authorized to ask for verification from a user."]});}
 
         let user1 = await Patient.findOne({healthid: req.body.id});
         let user2 = await Expert.findOne({licenseno: req.body.id});
@@ -314,12 +314,12 @@ router.post('/listSusDocs', checkAuth, async (req, res)=>{
     try{
         const userId = req.userId;
         let user = await Admin.findById(userId);
-        if(!user){ return res.status(401).json({verdict, messages:["Authorization failed! You are not authorized to remove a user."]});}
+        if(!user){ return res.status(401).json({verdict, messages:["Authorization failed! You are not authorized to list suspicious docs."]});}
 
         let docs = await Uploadeddoc.find({suspicious: 'yes'});
         
         verdict = true;
-        res.status(200).json({verdict, messages:["Success! Pending user listed successfully."], docs});
+        res.status(200).json({verdict, messages:["Success! Suspicious docs listed successfully."], docs});
     }
     catch(error){        
         // console.error(error.message);
@@ -357,7 +357,7 @@ router.post('/removeUser', [
 
         for (let index = 0; index < doc.length; index++) {
             const d = doc[index];
-            if(d.doctype=='licenseno' || d.doctype=='view'){
+            if(d.doctype=='healthid' || d.doctype=='licenseno' || d.doctype=='view'){
                 await Uploadeddoc.findByIdAndDelete(d.id);
                 await unlinkAsync(d.documentid);
             }

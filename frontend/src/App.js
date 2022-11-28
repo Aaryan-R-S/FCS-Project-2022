@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Admin from './components/Admin';
 import Patient from "./components/Patient";
 import Expert from './components/Expert';
+import View from './components/View';
 
 function App() {
     return (
@@ -26,6 +27,9 @@ function App() {
                         </Route>
                         <Route exact path="/expert">
                             <Expert />
+                        </Route>
+                        <Route exact path="/view">
+                            <View />
                         </Route>
                         <Route component={Home} />
                     </Switch>

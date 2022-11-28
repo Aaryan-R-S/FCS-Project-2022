@@ -12,6 +12,7 @@ function NavBar() {
             <Nav.Link href="/admin">Admin</Nav.Link>
             <Nav.Link href="/patient">Patient</Nav.Link>
             <Nav.Link href="/expert">Expert</Nav.Link>
+            <Nav.Link href="/view">View Document</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

@@ -1,21 +1,31 @@
 import React, {useState} from 'react';
+import axios from "axios";
 
 export default function PatientDetails() {
-
     const [response, setresponse] = useState()
 
     const submit = async () =>{
-
         let url =  (process.env.REACT_APP_NODE_ENV === "prod"? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_DEV_URL)
-
-        const res=await fetch(`${url}/patient/patientDetails`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            withCredentials: true,
-            credentials: 'include',
-        }).then((res) => res.json())
-        //   console.log(res);
-          setresponse(res)
+        let a = axios.create({
+            baseURL: url,
+        });
+        a.post(
+            "/patient/patientDetails",
+            JSON.stringify({}),
+            {
+                withCredentials: true,
+                credentials: 'include',
+                headers: { "Content-Type": "application/json" },
+            }
+            )
+            .then(function (response) {
+            //   console.log(response);
+              setresponse({messages: response.data.messages, data: response.data.data});
+            })
+            .catch(function (error) {
+            //   console.log(error.response.data.messages);
+              setresponse(error.response.data.messages);
+        });
     }
 
 
@@ -30,8 +40,8 @@ export default function PatientDetails() {
 
             </div>
             <div className="col">
-            <div className="p-3 border bg-dark">Response</div>
-            {JSON.stringify(response)}
+                <div className="p-3 border bg-dark">Response</div>
+                {JSON.stringify(response)}
             </div>
         </div>
         </div>

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-// import axios from "axios";
+import axios from "axios";
 
 export default function RemoveUser() {
 
@@ -7,18 +7,30 @@ export default function RemoveUser() {
 
     const submit = async () =>{
         var dict = {};
-        dict.id=document.getElementById("id").value
+        dict.id = document.getElementById("id").value;
         // console.log(dict)
-
-        // Write API here (data required)
-        let res
-
-        res = res.data;
-        // console.log(res)
-        setresponse(res)
+        let url =  (process.env.REACT_APP_NODE_ENV === "prod"? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_DEV_URL)
+        let a = axios.create({
+            baseURL: url,
+        });
+        a.post(
+            "/admin/removeUser",
+            JSON.stringify({ id:dict.id }),
+            {
+                withCredentials: true,
+                credentials: 'include',
+                headers: { "Content-Type": "application/json" },
+            }
+            )
+            .then(function (response) {
+            //   console.log(response);
+              setresponse(response.data.messages);
+            })
+            .catch(function (error) {
+            //   console.log(error.response.data.messages);
+              setresponse(error.response.data.messages);
+        });
     }
-
-
 
     return (
     <>

@@ -99,17 +99,18 @@ export default function Patient() {
                 Options
             </a>
             <ul className="dropdown-menu">
-                <li><button className="dropdown-item" onClick={addPatient}>Register</button></li>
                 <li><button className="dropdown-item" onClick={login}>Log in</button></li>
+                <li><button className="dropdown-item" onClick={addPatient}>Register</button></li>
                 <li><button className="dropdown-item" onClick={patientDetails}>Show Details</button></li>
+                <li><button className="dropdown-item" onClick={deletePatient}>Delete Account</button></li>
+                <li><button className="dropdown-item" onClick={logout}>Logout</button></li>
                 <li><button className="dropdown-item" onClick={modifyDetails}>Modify Details</button></li>
                 <li><button className="dropdown-item" onClick={verifyPatientAgain}>Verify Account</button></li>
                 <li><button className="dropdown-item" onClick={filterExperts}>Filter Expert</button></li>
-                <li><button className="dropdown-item" onClick={uploadDoc}>Upload Document</button></li>
-                <li><button className="dropdown-item" onClick={shareDoc}>Share Document</button></li>
                 <li><button className="dropdown-item" onClick={listDocs}>List Documents</button></li>
                 <li><button className="dropdown-item" onClick={deleteDoc}>Delete Document</button></li>
-
+                <li><button className="dropdown-item" onClick={uploadDoc}>Upload Document</button></li>
+                <li><button className="dropdown-item" onClick={shareDoc}>Share Document</button></li>
                 <li><button className="dropdown-item" onClick={listMedicines}>List Medicines</button></li>
                 <li><button className="dropdown-item" onClick={requestMedicine}>Request Medicine</button></li>
                 <li><button className="dropdown-item" onClick={listBilledOrders}>List Billed Orders</button></li>
@@ -118,9 +119,6 @@ export default function Patient() {
                 <li><button className="dropdown-item" onClick={listInsurances}>List Insurance</button></li>
                 <li><button className="dropdown-item" onClick={makeInsuranceClaim}>Make Insurance Claim</button></li>
                 <li><button className="dropdown-item" onClick={sendOTPMail}>Send OTP Mail</button></li>
-
-                <li><button className="dropdown-item" onClick={logout}>Logout</button></li>
-                <li><button className="dropdown-item" onClick={deletePatient}>Delete Account</button></li>
                 {/* <li><a className="dropdown-item disabled" href="/">Something else here</a></li> */}
 
             </ul>

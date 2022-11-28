@@ -1,22 +1,42 @@
 import React, {useState} from 'react'
 
+import Keyboard from 'react-simple-keyboard';
+import 'react-simple-keyboard/build/css/index.css';
 
 export default function AddPatient() {
 
     const [response, setresponse] = useState()
 
+    const [password, setPassword] = useState("");
+    const [layout, setLayout] = useState("default");
+    
+    const onChange = (input) => {
+        setPassword(input);
+        // console.log("Input changed", input);
+    }
+    
+     const onKeyPress = (button) => {
+        // console.log("Button pressed", button);
+        if (button === "{shift}" || button === "{lock}") handleShift();
+    }
+
+    const handleShift = () => {
+        const layoutName = layout;
+        setLayout(layoutName === "default" ? "shift" : "default");
+    };
+
     const submit = async () =>{
         var dict = {};
-        dict.healthid=document.getElementById("healthid").value
-        dict.password=document.getElementById("password").value
-        dict.name=document.getElementById("name").value
-        dict.dob=document.getElementById("dob").value
-        dict.address=document.getElementById("address").value
-        dict.email=document.getElementById("email").value
-        dict.phoneno=document.getElementById("phoneno").value
-        dict.doctype=document.getElementById("doctype").value
-        dict.file=document.getElementById("file").files[0].name
-
+        dict.healthid=document.getElementById("healthid").value;
+        dict.password=document.getElementById("password").value;
+        dict.name=document.getElementById("name").value;
+        dict.dob=document.getElementById("dob").value;
+        dict.address=document.getElementById("address").value;
+        dict.email=document.getElementById("email").value;
+        dict.phoneno=document.getElementById("phoneno").value;
+        dict.doctype="healthid";
+        dict.file=document.getElementById("file").files[0].name;
+        // console.log(dict);
         const formData = new FormData();
         formData.append("healthid", dict.healthid);
         formData.append("password", dict.password);
@@ -26,19 +46,23 @@ export default function AddPatient() {
         formData.append("email", dict.email);
         formData.append("phoneno", dict.phoneno);
         formData.append("doctype", dict.doctype);
-        console.log(document.getElementById("file").files[0])
+        // console.log(document.getElementById("file").files[0])
         formData.append("file", document.getElementById("file").files[0])
 
-        const res = await fetch("http://localhost:3500/patient/addPatient", {
+        let url =  (process.env.REACT_APP_NODE_ENV === "prod"? process.env.REACT_APP_PROD_URL : process.env.REACT_APP_DEV_URL)
+
+        const res = await fetch(`${url}/patient/addPatient`, {
             method: "POST",
             body: formData,
         }).then((res) => res.json());
-        // alert(JSON.stringify(`${res.message}, status: ${res.status}`));
-        console.log(res)
-        setresponse(res)
+        // console.log(res)
+        if(res.verdict){
+            setresponse(res.messages);
+        }
+        else{
+            setresponse(res.messages);
+        }
     }
-
-
 
     return (
     <>
@@ -54,7 +78,10 @@ export default function AddPatient() {
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password"/>
+                    <input value={password} type="password" disabled className="form-control" id="password"/>
+                </div>
+                <div className="mb-3" style={{color:'black'}}>
+                    <Keyboard layoutName={layout} onChange={onChange} onKeyPress={onKeyPress}/>
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Name</label>
@@ -75,10 +102,6 @@ export default function AddPatient() {
                 <div className="mb-3">
                     <label className="form-label">Phone Number</label>
                     <input type="number" className="form-control" id="phoneno"/>
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Document Type</label>
-                    <input type="text" className="form-control" id="doctype"/>
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Document</label>
