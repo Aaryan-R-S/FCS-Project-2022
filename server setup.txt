@@ -1,0 +1,40 @@
+[Login + Users + Firewall] - https://www.codewithharry.com/blogpost/setup-ubuntu-20-04-server/
+[Files + Passwordless Login] - https://www.codewithharry.com/blogpost/transferring-files-passwordless-login-ubuntu-20-04/
+
+%% Commands %% 
+
+[Root Login] - ssh iiitd@192.168.3.40
+[Password] - mainahibtaungarootkapasswd11223344
+[Logout] - exit
+[Change password] - passwd
+[Add users] - sudo adduser username
+[Increase privilege of user] - usermod -aG sudo username
+[Users (all of them can become root user)]
+	- aaryan20004 (arsLovesFCS004)
+	- prakhar20099 (prakharLovesFCS099)
+	- deepam20050 (deepamLovesFCS050)
+	- rahul20108 (rahulLovesFCS108)
+[Switch to root user] - sudo su
+[Directory commands] 
+	- ls 
+	- pwd 
+	- cd ../ 
+	- cd /home/iiitd
+
+[Firewall allow openssh] - ufw allow OpenSSH
+[Firewall enable] - ufw enable 
+
+[To upload files] - Use Filezilla software (https://filezilla-project.org/download.php)
+
+[Passwordless Login] - Refer (https://www.codewithharry.com/blogpost/transferring-files-passwordless-login-ubuntu-20-04/) 
+
+[SSL Certificate] - https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-22-04
+
+[GUI] - https://www.codewithharry.com/blogpost/install-ubuntu-desktop-vps/
+
+[Node.js Website Deploy] - https://www.codewithharry.com/blogpost/deploy-nodejs-app-on-ubuntu/
+ - https://blog.logrocket.com/how-to-run-a-node-js-server-with-nginx/
+
+[Full stack Deployement] - https://medium.com/geekculture/deploying-a-react-app-and-a-node-js-server-on-a-single-machine-with-pm2-and-nginx-15f17251ee74 
+
+

@@ -671,10 +671,10 @@ router.post('/verifyDoc', [
             return res.status(200).json({verdict, messages:["Failure! Document verification failed."]});
         }
 
-        found = blockChain.verify(hex);        
-        if(!found){
-            return res.status(200).json({verdict, messages:["Failure! Document verification failed."]});
-        }
+        // found = blockChain.verify(hex);        
+        // if(!found){
+        //     return res.status(200).json({verdict, messages:["Failure! Document verification failed."]});
+        // }
 
         verdict = true;
         res.status(200).json({verdict, messages:["Success! Document verified successfully."]});
